@@ -1,16 +1,27 @@
 'use client';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Menu, X, LayoutDashboard, ClipboardList, CreditCard, PlusCircle, Wrench, Inbox, Users, UserRound, House } from 'lucide-react';
 import { useSession } from '@/components/auth/session-provider';
 import { AccountMenu } from '@/components/auth/account-menu';
 import { Brand } from '@/components/layout/brand';
 import { dashboardPath } from '@/lib/auth-navigation';
+import { dashboardLinks } from '@/lib/dashboard-navigation';
+import type { DashboardRole } from '@/lib/dashboard-navigation';
+import '@/app/dashboard.css';
+
+const icons = { overview: LayoutDashboard, bookings: ClipboardList, payments: CreditCard, add: PlusCircle, services: Wrench, requests: Inbox, users: Users };
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { data, isPending, error } = useSession();
   const router = useRouter();
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggle = useRef<HTMLButtonElement>(null);
+  const sidebar = useRef<HTMLElement>(null);
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
+  useEffect(() => { if (menuOpen) sidebar.current?.querySelector<HTMLAnchorElement>('a')?.focus(); }, [menuOpen]);
   const allowed = !!data && (pathname === dashboardPath(data.user.role) || pathname.startsWith(dashboardPath(data.user.role) + '/') || pathname === '/dashboard/profile');
   useEffect(() => {
     if (isPending || error) return;
@@ -19,5 +30,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }, [data, isPending, error, pathname, allowed, router]);
   if (error) return <main className="container page-section"><h1>Unable to check your session</h1><p>Please check your connection and reload.</p><button className="button" onClick={() => window.location.reload()}>Try again</button></main>;
   if (isPending || !allowed) return <main className="container page-section" role="status">Checking access…</main>;
-  return <div className="dashboard-foundation"><header className="site-header container"><Brand /><Link href="/">Back to home</Link><AccountMenu /></header><main className="container page-section">{children}</main></div>;
+  const role = (['technician', 'admin'].includes(data!.user.role || '') ? data!.user.role : 'customer') as DashboardRole;
+  const closeMenu = () => { setMenuOpen(false); toggle.current?.focus(); };
+  return <div className="dashboard-shell" onKeyDown={event => { if (event.key === 'Escape' && menuOpen) closeMenu(); }}>
+    <a className="skip-link" href="#dashboard-main">Skip to dashboard content</a>
+    {menuOpen && <button className="dashboard-overlay" aria-label="Close dashboard navigation" onClick={closeMenu} />}
+    <aside ref={sidebar} id="dashboard-navigation" className={'dashboard-sidebar' + (menuOpen ? ' is-open' : '')}><div className="sidebar-brand"><Brand /><button className="sidebar-close" aria-label="Close navigation" onClick={closeMenu}><X size={23} /></button></div><p className="sidebar-caption">{role} workspace</p><nav aria-label="Dashboard navigation">{dashboardLinks(role).map(link => {
+      const Icon = icons[link.icon];
+      return link.ready ? <Link href={link.href} key={link.href} aria-current={pathname === link.href ? 'page' : undefined}><Icon size={20} aria-hidden="true" /><span>{link.label}</span></Link> : <span key={link.href} className="sidebar-unavailable" aria-disabled="true"><Icon size={20} aria-hidden="true" /><span>{link.label}</span><small>Soon</small></span>;
+    })}<Link href="/dashboard/profile" aria-current={pathname === '/dashboard/profile' ? 'page' : undefined}><UserRound size={20} aria-hidden="true" />My profile</Link></nav><div className="sidebar-bottom"><p>Clear updates.<br />Payment after completion.</p><Link href="/"><House size={18} aria-hidden="true" />Back to home</Link></div></aside>
+    <div className="dashboard-body"><header className="dashboard-topbar"><button ref={toggle} className="dashboard-menu-toggle" aria-label={menuOpen ? 'Close dashboard navigation' : 'Open dashboard navigation'} aria-controls="dashboard-navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Menu size={23} /></button><div className="dashboard-identity"><strong>{data!.user.name}</strong><span>{role}</span></div><Link className="dashboard-home-link" href="/">Home</Link><AccountMenu /></header><main id="dashboard-main" tabIndex={-1} className="dashboard-main">{children}</main></div>
+  </div>;
 }

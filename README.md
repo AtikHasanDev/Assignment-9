@@ -8,6 +8,8 @@ Parts 1–3 establish the Next.js public layout and shared UI, plus a BetterAuth
 
 ## Run locally
 
+Part 10 adds a separate full-width dashboard shell with role-specific navigation, a sticky user top bar, mobile sidebar controls, active-page styling, and Home/Profile links. Customer, technician, and admin overview pages fetch their role-protected summaries and show reusable statistics cards and accessible status bar charts. Empty accounts show real zero values; API failures have retry controls. Profile details are currently read-only. Navigation entries for screens still under construction are disabled until their implementation milestones.
+
 Part 9 adds a confirmation dialog for cancelling requested jobs, cancellation feedback, and expandable booking timelines. Timeline dates use Asia/Dhaka; rejected and cancelled jobs display terminal notices. Payment remains a future milestone, so the Paid timeline stage is displayed only when the server reports paymentStatus=paid. Technician request-management screens will use the new server status APIs in a later part.
 
 Part 8 adds /services/[id] with service information, technician summary, starting price, request controls, and route-specific unavailable/error pages. Logged-out users are sent to sign-in with a return-to link; only customers can submit the form. The form validates phone, address, preferred date, and problem description. Successful requests link to a scoped read-only My Bookings page. Cancellation, status actions, payment controls, and timeline rendering follow in later parts.

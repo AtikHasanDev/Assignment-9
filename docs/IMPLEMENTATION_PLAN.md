@@ -94,5 +94,9 @@ Part 8 committed by owner (client 38fbe94, server 1ed4c8c).
 
 Part 9 adds customer cancellation with a native confirmation dialog and booking timeline UI. Server technician queues, valid forward status transitions, completion amount validation, owner checks, and compare-and-set updates are implemented. Tests cover all transition pairs and an in-memory acceptance/cancellation race. Full technician request controls, Stripe payment gates, and live Atlas concurrency verification remain scheduled. No payment has been processed in this part.
 
-Commit accounting: eight confirmed meaningful commits in each repository since initialization. Part 9 supplies the ninth commit in each repository. The owner performs all commits and requests continuation.
+Part 9 committed by owner (client ee5f76a, server 577238c).
+
+Part 10 adds the role-specific dashboard shell, mobile sidebar, reusable statistics cards, scoped overview pages and status charts. New APIs enforce matching JWT roles and derive counts from actual user/service/booking data. Profile has a dedicated read-only page. Navigation for unfinished dashboard screens is disabled and will be enabled with those screens. Full profile editing and business dashboard controls remain scheduled. This stage also implements the three overview UIs together to validate every role against one API contract.
+
+Commit accounting: nine confirmed meaningful commits in each repository since initialization. Part 10 supplies the tenth commit in each repository. The owner performs all commits and requests continuation.
 

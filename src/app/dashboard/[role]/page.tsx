@@ -1,3 +1,9 @@
-export default function DashboardOverview() {
-  return <section><p className="eyebrow">YOUR FIXMATE WORKSPACE</p><h1>Welcome to your dashboard.</h1><p>Your account is ready. Repair management and overview statistics are being added in the next milestones.</p></section>;
+import { notFound } from 'next/navigation';
+import { DashboardOverview } from '@/components/dashboard/overview';
+import type { DashboardRole } from '@/lib/dashboard-navigation';
+
+export default async function OverviewPage({ params }: { params: Promise<{ role: string }> }) {
+  const { role } = await params;
+  if (!['customer', 'technician', 'admin'].includes(role)) notFound();
+  return <DashboardOverview role={role as DashboardRole} />;
 }
