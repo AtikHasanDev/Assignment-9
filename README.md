@@ -8,6 +8,8 @@ Parts 1–3 establish the Next.js public layout and shared UI, plus a BetterAuth
 
 ## Run locally
 
+Part 8 adds /services/[id] with service information, technician summary, starting price, request controls, and route-specific unavailable/error pages. Logged-out users are sent to sign-in with a return-to link; only customers can submit the form. The form validates phone, address, preferred date, and problem description. Successful requests link to a scoped read-only My Bookings page. Cancellation, status actions, payment controls, and timeline rendering follow in later parts.
+
 Part 7 replaces the directory placeholder with server-rendered service browsing. A GET form keeps search, category, serviceMode, sort, and page in the URL; pagination preserves filters and resets to page one when the search form is submitted. Cards, result counts, no-match states, and API failure states use actual server responses. Category links from the home page open preselected filters. Service details follow in the next milestone.
 
 Part 6 adds a request-time featured-service section that fetches the six newest approved, available services. It includes reusable service cards, loading skeletons, honest empty/error states, category links, and the four-step repair flow. No sample records are substituted when the API is unavailable. API_URL can override the API origin for server-side fetches; otherwise NEXT_PUBLIC_API_URL is used. Full service browsing and details are scheduled next.

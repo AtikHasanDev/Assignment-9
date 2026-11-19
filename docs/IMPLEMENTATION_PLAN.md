@@ -86,5 +86,9 @@ Part 6 committed by owner (client 399cc0c, server 2f92a52).
 
 Part 7 adds URL-backed server-rendered service search, category/mode filters, price/newest sorting, and pagination. The search form starts a fresh first page; pagination preserves the current query. Admin-only service approval and user-role APIs are implemented with field allowlists and self-role protection. Admin UI and live service-detail pages remain scheduled. No new credentials or sample data were introduced in this part.
 
-Commit accounting: six confirmed meaningful commits in each repository since initialization. Part 7 supplies the seventh commit in each repository. The owner performs all commits and requests continuation.
+Part 7 committed by owner (client ddba662, server 0393d10).
+
+Part 8 adds public service details and the validated role-restricted repair-request form. Customers get a success link to scoped read-only My Bookings. The server creates trusted snapshots, validates Bangladesh calendar dates, rejects own-service requests, and translates the active-booking unique constraint to a conflict response. Cancellation, technician transitions, payments, and the timeline UI remain scheduled. Request form work was brought forward from the next client milestone to make the booking endpoint reviewable together with its UI.
+
+Commit accounting: seven confirmed meaningful commits in each repository since initialization. Part 8 supplies the eighth commit in each repository. The owner performs all commits and requests continuation.
 
