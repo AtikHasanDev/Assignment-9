@@ -90,5 +90,9 @@ Part 7 committed by owner (client ddba662, server 0393d10).
 
 Part 8 adds public service details and the validated role-restricted repair-request form. Customers get a success link to scoped read-only My Bookings. The server creates trusted snapshots, validates Bangladesh calendar dates, rejects own-service requests, and translates the active-booking unique constraint to a conflict response. Cancellation, technician transitions, payments, and the timeline UI remain scheduled. Request form work was brought forward from the next client milestone to make the booking endpoint reviewable together with its UI.
 
-Commit accounting: seven confirmed meaningful commits in each repository since initialization. Part 8 supplies the eighth commit in each repository. The owner performs all commits and requests continuation.
+Part 8 committed by owner (client 38fbe94, server 1ed4c8c).
+
+Part 9 adds customer cancellation with a native confirmation dialog and booking timeline UI. Server technician queues, valid forward status transitions, completion amount validation, owner checks, and compare-and-set updates are implemented. Tests cover all transition pairs and an in-memory acceptance/cancellation race. Full technician request controls, Stripe payment gates, and live Atlas concurrency verification remain scheduled. No payment has been processed in this part.
+
+Commit accounting: eight confirmed meaningful commits in each repository since initialization. Part 9 supplies the ninth commit in each repository. The owner performs all commits and requests continuation.
 
