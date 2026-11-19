@@ -8,7 +8,7 @@ export function dashboardLinks(role: DashboardRole): DashboardLink[] {
     { href: base + '/payments', label: 'Payment history', icon: 'payments', ready: false },
   ];
   if (role === 'technician') return [overview,
-    { href: base + '/add-service', label: 'Add a service', icon: 'add', ready: false },
+    { href: base + '/add-service', label: 'Add a service', icon: 'add', ready: true },
     { href: base + '/my-services', label: 'My services', icon: 'services', ready: false },
     { href: base + '/requests', label: 'Manage requests', icon: 'requests', ready: true },
   ];

@@ -106,5 +106,9 @@ Part 11 committed by owner (client 0be14ba, server b879468).
 
 Part 12 adds shared profile editing, client field validation, photo selection/removal, upload progress and error feedback, and a BetterAuth session refetch after saving. Uploads use the authenticated API and validate image format, size, and browser-decoded dimensions. The server upload provider now validates returned URLs and safely handles network, malformed-response, and provider failures. Production client build and all 25 server tests pass. IMGBB_API_KEY remains unconfigured; real uploads and authenticated browser session refresh still require live verification.
 
-Commit accounting: eleven confirmed meaningful commits in each repository since initialization. Part 12 supplies the twelfth commit in each repository. The owner performs all commits and requests continuation. Remaining client milestones must still bring the client total to at least 20 meaningful commits.
+Part 12 committed by owner (client 6a93e45, server cd58246).
+
+Part 13 adds /dashboard/technician/add-service and enables its sidebar link. Technicians can upload an image, enter validated service details and a starting USD price, and submit through the existing owner/role-protected API. Successful creation clears the form and confirms pending administrator approval. The reusable uploader now supports service-specific feedback and image descriptions. The ImgBB key is configured and a real tiny PNG upload succeeded. Production build/TypeScript and all 25 server tests pass. Full authenticated browser creation and profile session-refresh verification remain pending. Service listing/editing/deletion/availability UI is next; payments, admin UI, seed data, deployment, and final QA remain.
+
+Commit accounting: twelve confirmed meaningful implementation commits in each repository since initialization. Part 13 supplies the thirteenth client implementation commit; no server changes or server commit are needed for this part. The owner performs all commits and requests continuation. Remaining client milestones must still bring the client total to at least 20 meaningful commits.
 

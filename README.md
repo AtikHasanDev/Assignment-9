@@ -4,7 +4,9 @@ A device and home appliance repair platform where customers find services, track
 
 ## Current progress
 
-Part 12 adds editable name, phone, service area, bio, and profile photo at /dashboard/profile. Email and role are read-only. Saving refetches the shared session to refresh account navigation. Photo uploads validate PNG/JPEG/WebP files up to 5 MB and 25 megapixels and show progress/error feedback; removal takes effect on Save profile. The server needs IMGBB_API_KEY in its ignored .env. Build/TypeScript and 25 server tests pass; live authenticated browser and ImgBB verification remain pending.
+Part 13 adds /dashboard/technician/add-service with image upload, required service fields, USD price validation, submission progress/error feedback, and pending-approval confirmation. The technician sidebar now enables Add a service. A real ImgBB test upload succeeded after local key configuration. Production build/TypeScript and 25 server tests pass; the full authenticated browser flow remains to be verified. My services and editing controls follow in the next part.
+
+Part 12 adds editable name, phone, service area, bio, and profile photo at /dashboard/profile. Email and role are read-only. Saving refetches the shared session to refresh account navigation. Photo uploads validate PNG/JPEG/WebP files up to 5 MB and 25 megapixels and show progress/error feedback; removal takes effect on Save profile. The server reads IMGBB_API_KEY from its ignored .env. Live provider upload is verified; authenticated browser verification remains pending.
 
 Parts 1–3 establish the Next.js public layout and shared UI, plus a BetterAuth client, reactive session provider, and JSON API helper. The service directory remains a pre-launch placeholder. Registration/sign-in pages, live listings, and dashboards follow in later milestones. The remaining plan is in docs/IMPLEMENTATION_PLAN.md.
 
