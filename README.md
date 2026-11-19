@@ -4,6 +4,8 @@ A device and home appliance repair platform where customers find services, track
 
 ## Current progress
 
+Part 15 adds administrator user management and service moderation at /dashboard/admin/users and /dashboard/admin/services. User roles and service approval decisions have confirmation dialogs. Lists use server pagination; moderation defaults to pending services with all/approved/rejected filters. Account self-role changes are disabled and remain rejected by the API. Both sidebar entries are enabled. Production build/TypeScript and all 25 server tests pass. These pages require an administrator account; authenticated browser interaction still needs verification.
+
 Part 14 adds /dashboard/technician/my-services with owned-service cards, approval/availability labels, editing, pause/resume, deletion confirmation, and refresh/error/empty states. Creation and editing share one validated form; edits reset approval through the existing API. My services is enabled in the sidebar. The authenticated browser workflow still needs manual verification.
 
 Local preview: http://localhost:3000 (client), http://localhost:5000/api/ready (API readiness). Run npm run dev from the client directory and npm start from Assignemnt-9-server in separate terminals if the preview is stopped. Use localhost for both apps so authentication cookies and allowed origins match. Sign in as a technician to use Add a service and My services.
