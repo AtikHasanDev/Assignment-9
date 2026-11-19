@@ -4,6 +4,10 @@ A device and home appliance repair platform where customers find services, track
 
 ## Current progress
 
+Part 14 adds /dashboard/technician/my-services with owned-service cards, approval/availability labels, editing, pause/resume, deletion confirmation, and refresh/error/empty states. Creation and editing share one validated form; edits reset approval through the existing API. My services is enabled in the sidebar. The authenticated browser workflow still needs manual verification.
+
+Local preview: http://localhost:3000 (client), http://localhost:5000/api/ready (API readiness). Run npm run dev from the client directory and npm start from Assignemnt-9-server in separate terminals if the preview is stopped. Use localhost for both apps so authentication cookies and allowed origins match. Sign in as a technician to use Add a service and My services.
+
 Part 13 adds /dashboard/technician/add-service with image upload, required service fields, USD price validation, submission progress/error feedback, and pending-approval confirmation. The technician sidebar now enables Add a service. A real ImgBB test upload succeeded after local key configuration. Production build/TypeScript and 25 server tests pass; the full authenticated browser flow remains to be verified. My services and editing controls follow in the next part.
 
 Part 12 adds editable name, phone, service area, bio, and profile photo at /dashboard/profile. Email and role are read-only. Saving refetches the shared session to refresh account navigation. Photo uploads validate PNG/JPEG/WebP files up to 5 MB and 25 megapixels and show progress/error feedback; removal takes effect on Save profile. The server reads IMGBB_API_KEY from its ignored .env. Live provider upload is verified; authenticated browser verification remains pending.
