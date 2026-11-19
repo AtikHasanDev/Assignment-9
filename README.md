@@ -4,7 +4,7 @@ A device and home appliance repair platform where customers find services, track
 
 ## Current progress
 
-Part 1 establishes a Next.js App Router application, TypeScript, an original responsive visual foundation, environment templates, and repository hygiene. Business features are planned in docs/IMPLEMENTATION_PLAN.md and are not implemented yet.
+Parts 1–2 establish Next.js App Router, TypeScript, a responsive public layout, sticky navigation with a keyboard-accessible mobile menu, a shared footer, an explanatory About page, and reusable buttons, badges, empty states, and loading skeletons. The service directory is explicitly a pre-launch placeholder; live listings, authentication, and dashboards are not implemented yet. The remaining plan is in docs/IMPLEMENTATION_PLAN.md.
 
 ## Run locally
 

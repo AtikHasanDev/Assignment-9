@@ -60,5 +60,15 @@ Work is delivered in small parts. The owner commits each completed part and asks
 
 ## Current state
 
-Part 1: application foundations implemented. No database, authentication, bookings, payment integration, or deployment has been completed yet. Git commits are performed by the owner because this session cannot write the repository metadata.
+Part 1 committed by the owner:
+- Client: 2d82ae3 — Scaffold FixMate client foundation.
+- Server: 25203d8 — Scaffold FixMate Express API server.
+
+Part 2 implemented, pending owner commits:
+- Client: shared public route layout, sticky responsive navigation, footer, About page, directory placeholder, and reusable UI components.
+- Server: pooled MongoDB connection, application collection indexes, fail-fast startup, database readiness endpoint, and readiness tests.
+
+MongoDB live verification requires the owner's Atlas connection in the ignored server .env. Authentication, booking/payment workflows, and deployment are not implemented yet. Footer contact/social details must be replaced with verified project channels before submission. Sign-in/sign-up controls will be added with authentication rather than linking to missing routes.
+
+Commit accounting: one confirmed meaningful client commit and one confirmed meaningful server commit since the initial repositories. Part 2 supplies the next commit in each repository. The owner performs all commits and requests continuation.
 

@@ -3,11 +3,7 @@ import { Wrench, ShieldCheck, ClipboardList, CreditCard, Smartphone, Laptop, Win
 export default function Home() {
   return (
     <div className="site-shell">
-      <header className="site-header container">
-        <a className="brand" href="/" aria-label="FixMate home"><span className="brand-icon"><Wrench size={23} /></span>FixMate<span className="brand-dot">.</span></a>
-        <span className="header-caption">A little care. A longer life.</span>
-      </header>
-      <main>
+      <div>
         <section className="hero container">
           <div className="hero-copy">
             <p className="eyebrow">DEVICE & HOME APPLIANCE REPAIR</p>
@@ -36,9 +32,9 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </main>
-      <footer className="container site-footer"><span>© {new Date().getFullYear()} FixMate</span><span>Built for the things you rely on.</span></footer>
+      </div>
     </div>
   );
 }
+
 
