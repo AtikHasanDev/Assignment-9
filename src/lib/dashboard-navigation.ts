@@ -15,7 +15,7 @@ export function dashboardLinks(role: DashboardRole): DashboardLink[] {
   return [overview,
     { href: base + '/users', label: 'Manage users', icon: 'users', ready: true },
     { href: base + '/services', label: 'Service approval', icon: 'services', ready: true },
-    { href: base + '/bookings', label: 'All bookings', icon: 'bookings', ready: false },
+    { href: base + '/bookings', label: 'All bookings', icon: 'bookings', ready: true },
     { href: base + '/transactions', label: 'Transactions', icon: 'payments', ready: false },
   ];
 }

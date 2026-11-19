@@ -11,7 +11,7 @@ export function JobTimeline({ status, paymentStatus, history = [] }: { status: s
   };
   if (terminal) {
     const event = history.findLast(entry => entry.status === status);
-    return <p className="job-terminal">{status === 'cancelled' ? 'You cancelled this request.' : 'The technician declined this request.'}{event && <span>{format(event.changedAt)}</span>}</p>;
+    return <p className="job-terminal">{status === 'cancelled' ? 'The customer cancelled this request.' : 'The technician declined this request.'}{event && <span>{format(event.changedAt)}</span>}</p>;
   }
   return <ol className="job-timeline" aria-label="Repair progress">{steps.map(([key, label], index) => {
     const event = history.findLast(entry => entry.status === key);
