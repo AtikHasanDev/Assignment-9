@@ -4,6 +4,8 @@ A device and home appliance repair platform where customers find services, track
 
 ## Current progress
 
+Part 12 adds editable name, phone, service area, bio, and profile photo at /dashboard/profile. Email and role are read-only. Saving refetches the shared session to refresh account navigation. Photo uploads validate PNG/JPEG/WebP files up to 5 MB and 25 megapixels and show progress/error feedback; removal takes effect on Save profile. The server needs IMGBB_API_KEY in its ignored .env. Build/TypeScript and 25 server tests pass; live authenticated browser and ImgBB verification remain pending.
+
 Parts 1–3 establish the Next.js public layout and shared UI, plus a BetterAuth client, reactive session provider, and JSON API helper. The service directory remains a pre-launch placeholder. Registration/sign-in pages, live listings, and dashboards follow in later milestones. The remaining plan is in docs/IMPLEMENTATION_PLAN.md.
 
 ## Run locally

@@ -102,5 +102,9 @@ Part 10 committed by owner (client 50c9322, server 1f61360).
 
 Part 11 adds the technician request-management screen and enables its sidebar link. Accept/reject/start/complete actions use existing owner-scoped workflow APIs; rejection and completion have dedicated dialogs. The new profile API validates editable fields and rejects identity/role/email changes. BetterAuth's update-user path shares validation. Profile editing, immediate client session refresh after edits, and live image uploads remain scheduled next.
 
-Commit accounting: ten confirmed meaningful commits in each repository since initialization. Part 11 supplies the eleventh commit in each repository. The owner performs all commits and requests continuation.
+Part 11 committed by owner (client 0be14ba, server b879468).
+
+Part 12 adds shared profile editing, client field validation, photo selection/removal, upload progress and error feedback, and a BetterAuth session refetch after saving. Uploads use the authenticated API and validate image format, size, and browser-decoded dimensions. The server upload provider now validates returned URLs and safely handles network, malformed-response, and provider failures. Production client build and all 25 server tests pass. IMGBB_API_KEY remains unconfigured; real uploads and authenticated browser session refresh still require live verification.
+
+Commit accounting: eleven confirmed meaningful commits in each repository since initialization. Part 12 supplies the twelfth commit in each repository. The owner performs all commits and requests continuation. Remaining client milestones must still bring the client total to at least 20 meaningful commits.
 
