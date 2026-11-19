@@ -8,6 +8,8 @@ Parts 1–3 establish the Next.js public layout and shared UI, plus a BetterAuth
 
 ## Run locally
 
+Part 5 adds sign-in, sign-out, safe same-origin return-to navigation, shared toast notifications, a session-aware account dropdown, and a protected dashboard entry point. Login and registration send users to their role's dashboard. Dashboard statistics, sidebar navigation, profile editing, and business workflows remain scheduled. The sign-in form is at /sign-in; private redirects use the returnTo query parameter. Access tokens stay in memory and are exchanged from the HttpOnly BetterAuth cookie.
+
 Part 4 adds /sign-up with customer/technician selection, accessible validation, password visibility, submission progress, and session-aware success feedback. The client API helper now exchanges the HttpOnly BetterAuth session for a short-lived JWT before private API calls. Sign-in pages, dashboard redirection, and app-wide toast notifications will be completed in subsequent milestones; the current success screen links to Services.
 
 Requires Node.js 22 or newer.

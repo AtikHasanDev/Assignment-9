@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Brand } from './brand';
 import { publicLinks } from '@/lib/constants';
+import { AccountMenu } from '@/components/auth/account-menu';
 
 export function Header() {
   const pathname = usePathname();
@@ -25,8 +26,7 @@ export function Header() {
       </button>
       <nav id="public-navigation" aria-label="Main navigation" className={'public-navigation' + (open ? ' is-open' : '')}>
         {publicLinks.map(link => <Link key={link.href} href={link.href} aria-current={isActive(link.href) ? 'page' : undefined} onClick={() => setOpen(false)}>{link.label}</Link>)}
-        <Link href="/sign-up" onClick={() => setOpen(false)}>Join FixMate</Link>
-        <Link className="nav-cta" href="/services" onClick={() => setOpen(false)}>Find a repair</Link>
+        <AccountMenu />
       </nav>
     </div>
   </header>;

@@ -74,5 +74,9 @@ Part 3 committed by owner (client ae5c725, server a855ebb).
 
 Part 4 adds the validated registration page and private API token exchange. Server role middlewares read current users from MongoDB; access tokens expire after 15 minutes. Registration currently shows a success screen linking to Services. Sign-in, dashboard redirects, and shared toast notifications remain scheduled. Local JWT tests cover signature, expiry, role changes, and deleted accounts.
 
-Commit accounting: three confirmed meaningful commits in each repository since initialization. Part 4 supplies the fourth commit in each repository. The owner performs all commits and requests continuation.
+Part 4 committed by owner (client b0ae7ed, server 843381f).
+
+Part 5 adds sign-in/sign-out, safe return-to paths, account navigation, shared toasts, registration dashboard redirects, and a protected dashboard entry point. Full dashboard layouts/statistics and profile editing remain. Server public service APIs now query MongoDB for search, filters, sort, pagination, and approved/available details. Client service browsing is next.
+
+Commit accounting: four confirmed meaningful commits in each repository since initialization. Part 5 supplies the fifth commit in each repository. The owner performs all commits and requests continuation.
 

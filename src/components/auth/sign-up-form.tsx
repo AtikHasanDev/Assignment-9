@@ -1,7 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { dashboardPath } from '@/lib/auth-navigation';
+import { useToast } from '@/components/ui/toast-provider';
 import { UserRound, Wrench, CheckCircle2, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useSession } from './session-provider';
@@ -10,6 +13,8 @@ import { authClient } from '@/lib/auth-client';
 type Errors = Partial<Record<'name' | 'email' | 'password', string>>;
 
 export function SignUpForm() {
+  const router = useRouter();
+  const notify = useToast();
   const { data: session, isPending, error: sessionError } = useSession();
   const [role, setRole] = useState<'customer' | 'technician'>('customer');
   const [errors, setErrors] = useState<Errors>({});
@@ -17,6 +22,7 @@ export function SignUpForm() {
   const [busy, setBusy] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [created, setCreated] = useState(false);
+  useEffect(() => { if (session) router.replace(dashboardPath(session.user.role)); }, [session, router]);
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -35,10 +41,11 @@ export function SignUpForm() {
     try {
       // role is server-owned; the server hook validates this registration choice.
       const result = await authClient.signUp.email({ name, email, password, ...{ role } });
-      if (result.error) { setMessage(result.error.message || 'Unable to create your account. Please try again.'); return; }
+      if (result.error) { const failure = result.error.message || 'Unable to create your account. Please try again.'; setMessage(failure); notify(failure, 'error'); return; }
+      notify('Your FixMate account is ready.');
       setCreated(true);
       await authClient.getSession();
-    } catch { setMessage('Cannot reach FixMate. Check your connection and try again.'); }
+    } catch { setMessage('Cannot reach FixMate. Check your connection and try again.'); notify('Cannot reach FixMate. Please try again.', 'error'); }
     finally { setBusy(false); }
   }
 
