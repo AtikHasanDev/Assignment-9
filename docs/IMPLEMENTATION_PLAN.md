@@ -1,0 +1,64 @@
+# FixMate implementation and commit plan
+
+Work is delivered in small parts. The owner commits each completed part and asks to continue. Do not claim planned functionality is implemented. Each milestone must have a real code change and a descriptive commit; do not use empty commits to meet the count.
+
+## Client milestones (22 planned meaningful commits)
+
+1. Scaffold Next.js, establish the visual foundation, and ignore the nested server
+2. Build shared responsive navigation, footer, and accessible UI primitives
+3. Connect BetterAuth session handling and API request utilities
+4. Build validated customer and technician registration
+5. Build sign-in, sign-out, and safe return-to navigation
+6. Build the dynamic featured-service home page and category links
+7. Build service browsing with URL-backed server filters and sorting
+8. Build service details and technician information
+9. Build the customer repair-request form and duplicate-request feedback
+10. Build protected role-aware dashboard layout and sidebar
+11. Build customer overview statistics and job chart
+12. Build customer bookings, cancellation confirmation, and timeline
+13. Build Stripe checkout redirects and success/cancel pages
+14. Build customer payment history
+15. Build technician overview and validated image-upload service creation
+16. Build technician service editing, deletion, and availability management
+17. Build technician request management and final-amount completion
+18. Build administrator overview and user role management
+19. Build administrator moderation, booking monitoring, and transactions
+20. Build shared profile editing and immediate session refresh
+21. Add loading, empty, not-found, and error states across routes
+22. Verify responsive flows and finalize deployment and submission documentation
+
+## Server milestones (14 planned meaningful commits)
+
+1. Scaffold Express, environment handling, CORS, and health endpoint
+2. Connect MongoDB and create collection indexes
+3. Configure BetterAuth with protected role registration and profile fields
+4. Issue JWTs from sessions and enforce authorization middlewares
+5. Build public service search, filtering, sorting, and pagination
+6. Build technician service CRUD and ImgBB upload handling
+7. Build admin service moderation and role management
+8. Create repair requests with atomic active-booking protection
+9. Enforce booking ownership, cancellation, and status transitions
+10. Build dashboard summaries and scoped payment/history queries
+11. Create Stripe checkout with server-controlled amounts and payment gates
+12. Verify Stripe payments and process idempotent signed webhooks
+13. Seed connected accounts, services, and bookings safely
+14. Test security and payment rules and finalize production deployment
+
+## Assignment constraints
+
+- Next.js App Router client; Express server; MongoDB; BetterAuth; custom JWT role middlewares; Stripe test mode; ImgBB file uploads.
+- Exactly four application collections: BetterAuth user collection plus services, bookings, payments. BetterAuth session, account, and verification collections are additional auth infrastructure.
+- Public listings must be approved and available. Service edits reset approval to pending.
+- Only customers request services. No duplicate active requests for the same service/customer.
+- Only owning technicians move requested to accepted/rejected, accepted to in-progress, and in-progress to completed with a positive final amount.
+- Only owning customers cancel requested jobs. Only completed, unpaid jobs can be paid.
+- Unique Stripe session and booking payment indexes; webhook and success-page verification share idempotent fulfillment.
+- Public pages, separate protected role dashboards, profile updates, toasts, confirmations, loading/error/empty states, and responsive layouts.
+- Seed at least two technicians and twelve approved services, plus connected bookings in several statuses.
+- Optional additions selected: job status history/timeline and server-side pagination.
+- Submission requires working production URLs, test accounts, and at least 20 client plus 12 server meaningful commits.
+
+## Current state
+
+Part 1: application foundations implemented. No database, authentication, bookings, payment integration, or deployment has been completed yet. Git commits are performed by the owner because this session cannot write the repository metadata.
+
