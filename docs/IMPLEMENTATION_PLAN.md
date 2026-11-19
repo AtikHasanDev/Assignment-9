@@ -78,5 +78,9 @@ Part 4 committed by owner (client b0ae7ed, server 843381f).
 
 Part 5 adds sign-in/sign-out, safe return-to paths, account navigation, shared toasts, registration dashboard redirects, and a protected dashboard entry point. Full dashboard layouts/statistics and profile editing remain. Server public service APIs now query MongoDB for search, filters, sort, pagination, and approved/available details. Client service browsing is next.
 
-Commit accounting: four confirmed meaningful commits in each repository since initialization. Part 5 supplies the fifth commit in each repository. The owner performs all commits and requests continuation.
+Part 5 committed by owner (client 76cfc37, server f387d7f).
+
+Part 6 adds the dynamic featured-service home section, reusable service cards, categories, and repair flow. Server technician CRUD validates fields, scopes mutations to the owner, and resets approval after edits. An authenticated ImgBB endpoint validates base64 image type/size. A real IMGBB_API_KEY and live upload verification are still required. Service details and client browsing remain scheduled next; no fabricated services are shown.
+
+Commit accounting: five confirmed meaningful commits in each repository since initialization. Part 6 supplies the sixth commit in each repository. The owner performs all commits and requests continuation.
 
