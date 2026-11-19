@@ -10,7 +10,7 @@ export function dashboardLinks(role: DashboardRole): DashboardLink[] {
   if (role === 'technician') return [overview,
     { href: base + '/add-service', label: 'Add a service', icon: 'add', ready: false },
     { href: base + '/my-services', label: 'My services', icon: 'services', ready: false },
-    { href: base + '/requests', label: 'Manage requests', icon: 'requests', ready: false },
+    { href: base + '/requests', label: 'Manage requests', icon: 'requests', ready: true },
   ];
   return [overview,
     { href: base + '/users', label: 'Manage users', icon: 'users', ready: false },

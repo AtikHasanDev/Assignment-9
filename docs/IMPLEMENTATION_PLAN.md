@@ -98,5 +98,9 @@ Part 9 committed by owner (client ee5f76a, server 577238c).
 
 Part 10 adds the role-specific dashboard shell, mobile sidebar, reusable statistics cards, scoped overview pages and status charts. New APIs enforce matching JWT roles and derive counts from actual user/service/booking data. Profile has a dedicated read-only page. Navigation for unfinished dashboard screens is disabled and will be enabled with those screens. Full profile editing and business dashboard controls remain scheduled. This stage also implements the three overview UIs together to validate every role against one API contract.
 
-Commit accounting: nine confirmed meaningful commits in each repository since initialization. Part 10 supplies the tenth commit in each repository. The owner performs all commits and requests continuation.
+Part 10 committed by owner (client 50c9322, server 1f61360).
+
+Part 11 adds the technician request-management screen and enables its sidebar link. Accept/reject/start/complete actions use existing owner-scoped workflow APIs; rejection and completion have dedicated dialogs. The new profile API validates editable fields and rejects identity/role/email changes. BetterAuth's update-user path shares validation. Profile editing, immediate client session refresh after edits, and live image uploads remain scheduled next.
+
+Commit accounting: ten confirmed meaningful commits in each repository since initialization. Part 11 supplies the eleventh commit in each repository. The owner performs all commits and requests continuation.
 

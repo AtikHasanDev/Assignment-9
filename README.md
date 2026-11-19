@@ -8,6 +8,8 @@ Parts 1–3 establish the Next.js public layout and shared UI, plus a BetterAuth
 
 ## Run locally
 
+Part 11 enables the technician request queue at /dashboard/technician/requests. It shows customer contact/address, preferred date, problem description, service, status, and price, with server-backed status filtering and refresh. Requested jobs expose Accept/Reject; rejection requires confirmation. Accepted jobs expose Start work; in-progress jobs expose a completion dialog with a validated final USD amount. Terminal jobs have no mutation controls. Status changes show toasts, refresh the queue, and handle stale-state conflicts. Profile editing is the next client milestone; its protected server API is now available.
+
 Part 10 adds a separate full-width dashboard shell with role-specific navigation, a sticky user top bar, mobile sidebar controls, active-page styling, and Home/Profile links. Customer, technician, and admin overview pages fetch their role-protected summaries and show reusable statistics cards and accessible status bar charts. Empty accounts show real zero values; API failures have retry controls. Profile details are currently read-only. Navigation entries for screens still under construction are disabled until their implementation milestones.
 
 Part 9 adds a confirmation dialog for cancelling requested jobs, cancellation feedback, and expandable booking timelines. Timeline dates use Asia/Dhaka; rejected and cancelled jobs display terminal notices. Payment remains a future milestone, so the Paid timeline stage is displayed only when the server reports paymentStatus=paid. Technician request-management screens will use the new server status APIs in a later part.
