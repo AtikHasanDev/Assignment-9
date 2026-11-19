@@ -64,11 +64,11 @@ Part 1 committed by the owner:
 - Client: 2d82ae3 — Scaffold FixMate client foundation.
 - Server: 25203d8 — Scaffold FixMate Express API server.
 
-Part 2 implemented, pending owner commits:
+Part 2 committed by owner (client f2b6453, server 0b5e16b):
 - Client: shared public route layout, sticky responsive navigation, footer, About page, directory placeholder, and reusable UI components.
 - Server: pooled MongoDB connection, application collection indexes, fail-fast startup, database readiness endpoint, and readiness tests.
 
-MongoDB live verification requires the owner's Atlas connection in the ignored server .env. Authentication, booking/payment workflows, and deployment are not implemented yet. Footer contact/social details must be replaced with verified project channels before submission. Sign-in/sign-up controls will be added with authentication rather than linking to missing routes.
+MongoDB authentication and indexes were verified against Atlas. Part 3 adds BetterAuth server endpoints, registration role/password policies, client session handling, and API utilities. Live Express/Atlas smoke tests verified role coercion, technician registration, cookie sessions, role escalation rejection, and sign-out revocation; disposable test records were removed. Authentication pages, JWT-protected business APIs, booking/payment workflows, and deployment remain. Footer contact/social details still need verified project channels.
 
-Commit accounting: one confirmed meaningful client commit and one confirmed meaningful server commit since the initial repositories. Part 2 supplies the next commit in each repository. The owner performs all commits and requests continuation.
+Commit accounting: two confirmed meaningful commits in each repository since initialization. Part 3 supplies the third commit in each repository. The owner performs all commits and requests continuation.
 

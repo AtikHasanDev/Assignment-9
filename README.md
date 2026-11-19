@@ -4,7 +4,7 @@ A device and home appliance repair platform where customers find services, track
 
 ## Current progress
 
-Parts 1–2 establish Next.js App Router, TypeScript, a responsive public layout, sticky navigation with a keyboard-accessible mobile menu, a shared footer, an explanatory About page, and reusable buttons, badges, empty states, and loading skeletons. The service directory is explicitly a pre-launch placeholder; live listings, authentication, and dashboards are not implemented yet. The remaining plan is in docs/IMPLEMENTATION_PLAN.md.
+Parts 1–3 establish the Next.js public layout and shared UI, plus a BetterAuth client, reactive session provider, and JSON API helper. The service directory remains a pre-launch placeholder. Registration/sign-in pages, live listings, and dashboards follow in later milestones. The remaining plan is in docs/IMPLEMENTATION_PLAN.md.
 
 ## Run locally
 
