@@ -70,5 +70,9 @@ Part 2 committed by owner (client f2b6453, server 0b5e16b):
 
 MongoDB authentication and indexes were verified against Atlas. Part 3 adds BetterAuth server endpoints, registration role/password policies, client session handling, and API utilities. Live Express/Atlas smoke tests verified role coercion, technician registration, cookie sessions, role escalation rejection, and sign-out revocation; disposable test records were removed. Authentication pages, JWT-protected business APIs, booking/payment workflows, and deployment remain. Footer contact/social details still need verified project channels.
 
-Commit accounting: two confirmed meaningful commits in each repository since initialization. Part 3 supplies the third commit in each repository. The owner performs all commits and requests continuation.
+Part 3 committed by owner (client ae5c725, server a855ebb).
+
+Part 4 adds the validated registration page and private API token exchange. Server role middlewares read current users from MongoDB; access tokens expire after 15 minutes. Registration currently shows a success screen linking to Services. Sign-in, dashboard redirects, and shared toast notifications remain scheduled. Local JWT tests cover signature, expiry, role changes, and deleted accounts.
+
+Commit accounting: three confirmed meaningful commits in each repository since initialization. Part 4 supplies the fourth commit in each repository. The owner performs all commits and requests continuation.
 

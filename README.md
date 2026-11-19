@@ -8,6 +8,8 @@ Parts 1–3 establish the Next.js public layout and shared UI, plus a BetterAuth
 
 ## Run locally
 
+Part 4 adds /sign-up with customer/technician selection, accessible validation, password visibility, submission progress, and session-aware success feedback. The client API helper now exchanges the HttpOnly BetterAuth session for a short-lived JWT before private API calls. Sign-in pages, dashboard redirection, and app-wide toast notifications will be completed in subsequent milestones; the current success screen links to Services.
+
 Requires Node.js 22 or newer.
 
 ```powershell

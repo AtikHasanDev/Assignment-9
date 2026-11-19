@@ -25,6 +25,7 @@ export function Header() {
       </button>
       <nav id="public-navigation" aria-label="Main navigation" className={'public-navigation' + (open ? ' is-open' : '')}>
         {publicLinks.map(link => <Link key={link.href} href={link.href} aria-current={isActive(link.href) ? 'page' : undefined} onClick={() => setOpen(false)}>{link.label}</Link>)}
+        <Link href="/sign-up" onClick={() => setOpen(false)}>Join FixMate</Link>
         <Link className="nav-cta" href="/services" onClick={() => setOpen(false)}>Find a repair</Link>
       </nav>
     </div>

@@ -14,3 +14,12 @@ export async function apiRequest<T>(path: string, options: RequestInit = {}): Pr
   return data as T;
 }
 
+// Access tokens remain in request memory; BetterAuth's HttpOnly session cookie
+// is used to obtain a fresh short-lived token. Never persist tokens in localStorage.
+export async function authenticatedApiRequest<T>(path: string, options: RequestInit = {}): Promise<T> {
+  const { token } = await apiRequest<{ token: string }>('/api/token', { method: 'POST' });
+  const headers = new Headers(options.headers);
+  headers.set('Authorization', 'Bearer ' + token);
+  return apiRequest<T>(path, { ...options, headers });
+}
+
