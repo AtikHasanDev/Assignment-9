@@ -1,4 +1,5 @@
 'use client';
+import { ProblemPhoto } from '@/components/bookings/problem-photo';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { authenticatedApiRequest } from '@/lib/api';
@@ -11,7 +12,7 @@ import type { HistoryEntry } from '@/components/bookings/job-timeline';
 import { useToast } from '@/components/ui/toast-provider';
 import { Button } from '@/components/ui/button';
 
-type Booking = { _id: string; serviceTitle: string; serviceImage: string; technicianName: string; preferredDate: string; basePrice: number; finalAmount: number; status: Status; paymentStatus: 'paid' | 'unpaid'; statusHistory?: HistoryEntry[] };
+type Booking = { _id: string; serviceTitle: string; serviceImage: string; problemImage?: string; technicianName: string; preferredDate: string; basePrice: number; finalAmount: number; status: Status; paymentStatus: 'paid' | 'unpaid'; statusHistory?: HistoryEntry[] };
 export default function MyBookings() {
   const notify = useToast();
   const [selected, setSelected] = useState<Booking | null>(null);
@@ -55,7 +56,7 @@ export default function MyBookings() {
   return <section><p className="eyebrow">YOUR REPAIR REQUESTS</p><h1>My bookings</h1><p>Follow your repair requests from one place.</p>
     {loading ? <p role="status">Loading your bookings…</p> : failure ? <div role="alert"><p>{failure}</p><button className="button" onClick={() => setAttempt(attempt + 1)}>Try again</button></div> : items.length ? <div className="booking-list">{items.map(item => <article className="booking-card" key={item._id}>
       <div className="booking-summary"><img src={item.serviceImage} alt="" width={100} height={80} /><div><h2>{item.serviceTitle}</h2><p>{item.technicianName} · {new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(item.preferredDate))}</p><StatusBadge status={item.status} /> <StatusBadge status={item.paymentStatus} /></div><div className="booking-price"><span>{item.status === 'completed' ? 'Final amount' : 'Starting price'}</span><strong>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item.status === 'completed' ? item.finalAmount : item.basePrice)}</strong></div></div>
-      <div className="booking-actions"><details className="booking-progress"><summary>View repair progress</summary><JobTimeline status={item.status} paymentStatus={item.paymentStatus} history={item.statusHistory} /></details>{item.status === 'requested' && <Button variant="secondary" disabled={busy} onClick={() => setSelected(item)}>Cancel request</Button>}{item.status === 'completed' && item.paymentStatus === 'unpaid' && <Button disabled={busy} onClick={() => pay(item)}>{busy ? 'Please wait…' : 'Pay with Stripe'}</Button>}</div>
+      <div className="booking-actions"><details className="booking-progress"><summary>View repair details and progress</summary><ProblemPhoto src={item.problemImage} /><JobTimeline status={item.status} paymentStatus={item.paymentStatus} history={item.statusHistory} /></details>{item.status === 'requested' && <Button variant="secondary" disabled={busy} onClick={() => setSelected(item)}>Cancel request</Button>}{item.status === 'completed' && item.paymentStatus === 'unpaid' && <Button disabled={busy} onClick={() => pay(item)}>{busy ? 'Please wait…' : 'Pay with Stripe'}</Button>}</div>
     </article>)}</div> : <EmptyState title="Your first repair starts here" description="Explore our services and tell a technician what needs fixing." action={<Link className="button" href="/services">Find a repair</Link>} />}
     <ConfirmationDialog open={!!selected} title="Cancel this repair request?" description={selected ? 'Cancel your request for ' + selected.serviceTitle + '? This is only possible before the technician accepts it.' : ''} confirmLabel="Cancel request" busy={busy} onConfirm={cancelRequest} onCancel={() => setSelected(null)} />
   </section>;

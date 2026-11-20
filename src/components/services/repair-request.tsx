@@ -5,6 +5,8 @@ import { useSession } from '@/components/auth/session-provider';
 import { useToast } from '@/components/ui/toast-provider';
 import { authenticatedApiRequest, ApiError } from '@/lib/api';
 import { Button } from '@/components/ui/button';
+import { ImageUpload } from '@/components/ui/image-upload';
+import '@/app/profile.css';
 
 function today() {
   const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Dhaka', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
@@ -19,6 +21,8 @@ export function RepairRequest({ serviceId }: { serviceId: string }) {
   const [done, setDone] = useState(false);
   const [failure, setFailure] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [problemImage, setProblemImage] = useState('');
+  const [uploading, setUploading] = useState(false);
   if (isPending) return <p role="status">Checking your account…</p>;
   if (error) return <p role="alert">Your session could not be checked. Please reload and try again.</p>;
   if (!data) return <Link className="button request-button" href={'/sign-in?returnTo=' + encodeURIComponent('/services/' + serviceId)}>Sign in to request repair</Link>;
@@ -26,7 +30,7 @@ export function RepairRequest({ serviceId }: { serviceId: string }) {
   if (done) return <div role="status"><h2>Request sent</h2><p>Your technician will review the problem and your preferred date.</p><Link className="button request-button" href="/dashboard/customer/bookings">View my bookings</Link></div>;
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault(); if (busy) return;
+    event.preventDefault(); if (busy || uploading) return;
     const fields = new FormData(event.currentTarget);
     const customerPhone = String(fields.get('customerPhone') || '').trim();
     const address = String(fields.get('address') || '').trim();
@@ -42,7 +46,7 @@ export function RepairRequest({ serviceId }: { serviceId: string }) {
     if (Object.keys(next).length) return;
     setBusy(true);
     try {
-      await authenticatedApiRequest('/api/bookings', { method: 'POST', body: JSON.stringify({ serviceId, customerPhone, address, preferredDate, problemDescription }) });
+      await authenticatedApiRequest('/api/bookings', { method: 'POST', body: JSON.stringify({ serviceId, customerPhone, address, preferredDate, problemDescription, ...(problemImage ? { problemImage } : {}) }) });
       setDone(true); notify('Your repair request has been sent.');
     } catch (error) {
       const message = error instanceof ApiError ? error.message : 'Could not send your request. Please try again.';
@@ -51,7 +55,7 @@ export function RepairRequest({ serviceId }: { serviceId: string }) {
   }
 
   if (!open) return <Button className="request-button" onClick={() => setOpen(true)}>Request repair</Button>;
-  return <form className="repair-form" onSubmit={submit} noValidate aria-busy={busy}><h2>Tell us what needs fixing</h2><p>Your preferred date is subject to the technician accepting the request.</p>
+  return <form className="repair-form" onSubmit={submit} noValidate aria-busy={busy || uploading}><h2>Tell us what needs fixing</h2><p>Your preferred date is subject to the technician accepting the request.</p>
     <label htmlFor="repair-name">Name<input id="repair-name" value={data.user.name} readOnly /></label>
     <label htmlFor="repair-email">Email<input id="repair-email" type="email" value={data.user.email} readOnly /></label>
     <label htmlFor="repair-phone">Phone<input id="repair-phone" name="customerPhone" type="tel" autoComplete="tel" defaultValue={data.user.phone || ''} maxLength={24} disabled={busy} required aria-invalid={!!errors.customerPhone} aria-describedby="phone-error" /></label><p className="request-field-error" id="phone-error">{errors.customerPhone}</p>
@@ -59,6 +63,7 @@ export function RepairRequest({ serviceId }: { serviceId: string }) {
     <label htmlFor="repair-date">Preferred date<input id="repair-date" name="preferredDate" type="date" min={today()} required disabled={busy} aria-invalid={!!errors.preferredDate} aria-describedby="date-error" /></label><p className="request-field-error" id="date-error">{errors.preferredDate}</p>
     <label htmlFor="repair-problem">What’s wrong?<textarea id="repair-problem" name="problemDescription" rows={4} minLength={20} maxLength={3000} required disabled={busy} placeholder="Describe the symptoms and when the problem started." aria-invalid={!!errors.problemDescription} aria-describedby="problem-error" /></label><p className="request-field-error" id="problem-error">{errors.problemDescription}</p>
     {failure && <p className="request-failure" role="alert">{failure}</p>}
-    <Button type="submit" className="request-button" disabled={busy}>{busy ? 'Sending request…' : 'Send repair request'}</Button><Button variant="secondary" disabled={busy} onClick={() => setOpen(false)} className="request-button">Close form</Button>
+    <div className="repair-photo-upload"><ImageUpload label="Damage photo (optional)" value={problemImage} onChange={setProblemImage} onBusyChange={setUploading} disabled={busy} successMessage="Damage photo uploaded. It will be attached when you send the repair request." /><p>You can send your request without a photo.</p></div>
+    <Button type="submit" className="request-button" disabled={busy || uploading}>{busy ? 'Sending request…' : uploading ? 'Uploading photo…' : 'Send repair request'}</Button><Button variant="secondary" disabled={busy || uploading} onClick={() => setOpen(false)} className="request-button">Close form</Button>
   </form>;
 }

@@ -152,3 +152,7 @@ Deployment approval follow-up: the owner explicitly approved transferring MONGOD
 
 Commit accounting: nineteen confirmed meaningful client implementation commits and sixteen server implementation commits since initialization. Part 20 supplies the twentieth client implementation commit and seventeenth server implementation commit. The owner performs all commits and requests continuation. Deployment, deployed verification, and final submission URLs remain required; the assignment is not complete yet.
 
+Part 20 committed and pushed by owner (client f7304c4, server d95dacc). Google login was checked against the source assignment and is optional; it has not been added. Deployment remains paused/unsubmitted.
+
+User-requested enhancement: optional customer damage-photo uploads through ImgBB, booking persistence/validation, and attachment display for customer/owning technician/admin. Photos are optional: omitted/empty values pass, an upload failure does not require a photo, and existing records remain compatible. Service cards get hover lift/image zoom with keyboard focus feedback and reduced-motion support. Build/TypeScript and all 32 server tests pass. Real API workflow checks passed requests with/without photos and technician attachment visibility, then cleaned up disposable records. Browser QA verified a real ImgBB PNG upload, preview/removal, enabled submission without a photo, and a 390px layout with no overflow. The owner must commit/push this enhancement before deployment.
+

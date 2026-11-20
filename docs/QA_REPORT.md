@@ -2,6 +2,8 @@
 
 Verified on 20 November 2026. Production hosting checks remain pending.
 
+Optional damage-photo follow-up: production build/TypeScript and all 32 server tests pass. Real API checks create requests without a photo and with a trusted photo URL, and verify technician visibility. Browser QA uploaded an actual PNG to ImgBB, displayed its preview, removed it, and confirmed the submit button remains enabled without a photo. The 390px request form had no horizontal overflow. Service-card hover lift/image zoom uses pointer-capability queries and disables motion under prefers-reduced-motion.
+
 | Check | Result |
 | --- | --- |
 | Production Next.js build and TypeScript | Passed |
