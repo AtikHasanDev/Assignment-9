@@ -12,6 +12,8 @@ Services redesign follow-up: production build passed; browser checks verified El
 
 Owner-requested professional signup: the home recruitment section links to `/sign-up?role=technician`. Browser verification confirmed the technician option is selected, while ordinary `/sign-up` still defaults to customer. It uses the existing registration API and server role validation; no new account was created during this check. Production build passed after this addition.
 
+Dark-mode follow-up: added a sun/moon pill switch before Home in desktop public navigation, beside the menu on mobile, and in the dashboard top bar. Verified manual light selection survives reload even with a dark system preference, keyboard activation, dark theme across route navigation, Services cards/filters, customer overview/charts and profile inputs. At320px the visible switch and mobile header fit without horizontal page overflow. next-themes preserves the preference; Sonner follows the selected theme. Reduced-motion settings disable switch/color animation. Production build and TypeScript passed. This adds the dark-mode half of O05, not its missing PDF invoice half.
+
 - Client production build: passed, including both exact `/payment/success` and `/payment/cancel` routes. TypeScript is included in the build.
 - Server `npm test`: **32 passed, 0 failed**, covering auth policy/JWT/live roles, ownership, public filtering, pagination, uploads, profiles, job transitions, duplicate requests, payment gating, transactional idempotency, webhook signatures, and revenue across pagination.
 - `npm run demo:check`: passed with real local API, Atlas and Stripe test mode. All roles signed in; disposable service moderation/availability, requests with and without photos, duplicate protection, cancellation, technician transitions, ownership, edit approval reset, payment-history APIs, and real unpaid Checkout were verified. Disposable records and session were cleaned up.
@@ -163,7 +165,7 @@ The desktop-table difference is deliberate audit precision: the fields and actio
 | O02 | Server-side browse pagination composing filters/sort | Pass | Mongo skip/limit; page controls preserve URL options. |
 | O03 | Pro subscription | Optional | Not selected. |
 | O04 | Ratings/reviews | Optional | Not selected. |
-| O05 | PDF invoice + dark mode | Optional | Not selected. Two optional requirements already implemented. |
+| O05 | PDF invoice + dark mode | Partial | Dark mode added across public pages/dashboards with a persistent sun/moon switch. PDF invoices are not implemented, so this combined optional requirement is not counted as a third fully completed item. |
 
 ## Remaining work before claiming full compliance
 

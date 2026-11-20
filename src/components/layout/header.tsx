@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react';
 import { Brand } from './brand';
 import { publicLinks } from '@/lib/constants';
 import { AccountMenu } from '@/components/auth/account-menu';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 export function Header() {
   const pathname = usePathname();
@@ -21,9 +22,9 @@ export function Header() {
   }}>
     <div className="site-header container">
       <Brand />
-      <button ref={toggle} className="menu-toggle" type="button" aria-expanded={open} aria-controls="public-navigation" aria-label={open ? 'Close navigation' : 'Open navigation'} onClick={() => setOpen(!open)}>
+      <div className="header-controls"><ThemeToggle /><button ref={toggle} className="menu-toggle" type="button" aria-expanded={open} aria-controls="public-navigation" aria-label={open ? 'Close navigation' : 'Open navigation'} onClick={() => setOpen(!open)}>
         {open ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
-      </button>
+      </button></div>
       <nav id="public-navigation" aria-label="Main navigation" className={'public-navigation' + (open ? ' is-open' : '')}>
         {publicLinks.map(link => <Link key={link.href} href={link.href} aria-current={isActive(link.href) ? 'page' : undefined} onClick={() => setOpen(false)}>{link.label}</Link>)}
         <AccountMenu />

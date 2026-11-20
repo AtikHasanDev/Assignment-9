@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Menu, X, LayoutDashboard, ClipboardList, CreditCard, PlusCircle, Wrench, Inbox, Users, UserRound, House } from 'lucide-react';
 import { useSession } from '@/components/auth/session-provider';
 import { AccountMenu } from '@/components/auth/account-menu';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { Brand } from '@/components/layout/brand';
 import { dashboardPath } from '@/lib/auth-navigation';
 import { dashboardLinks } from '@/lib/dashboard-navigation';
@@ -61,6 +62,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       const Icon = icons[link.icon];
       return link.ready ? <Link href={link.href} key={link.href} aria-current={pathname === link.href ? 'page' : undefined}><Icon size={20} aria-hidden="true" /><span>{link.label}</span></Link> : <span key={link.href} className="sidebar-unavailable" aria-disabled="true"><Icon size={20} aria-hidden="true" /><span>{link.label}</span><small>Soon</small></span>;
     })}<Link href="/dashboard/profile" aria-current={pathname === '/dashboard/profile' ? 'page' : undefined}><UserRound size={20} aria-hidden="true" />My profile</Link></nav><div className="sidebar-bottom"><p>Clear updates.<br />Payment after completion.</p><Link href="/"><House size={18} aria-hidden="true" />Back to home</Link></div></aside>
-    <div className="dashboard-body" inert={menuOpen}><header className="dashboard-topbar"><button ref={toggle} className="dashboard-menu-toggle" aria-label={menuOpen ? 'Close dashboard navigation' : 'Open dashboard navigation'} aria-controls="dashboard-navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Menu size={23} /></button><div className="dashboard-identity"><strong>{data!.user.name}</strong><span>{role}</span></div><Link className="dashboard-home-link" href="/">Home</Link><AccountMenu /></header><main id="dashboard-main" tabIndex={-1} className="dashboard-main">{children}</main></div>
+    <div className="dashboard-body" inert={menuOpen}><header className="dashboard-topbar"><button ref={toggle} className="dashboard-menu-toggle" aria-label={menuOpen ? 'Close dashboard navigation' : 'Open dashboard navigation'} aria-controls="dashboard-navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Menu size={23} /></button><div className="dashboard-identity"><strong>{data!.user.name}</strong><span>{role}</span></div><Link className="dashboard-home-link" href="/">Home</Link><ThemeToggle /><AccountMenu /></header><main id="dashboard-main" tabIndex={-1} className="dashboard-main">{children}</main></div>
   </div>;
 }

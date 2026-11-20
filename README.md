@@ -19,7 +19,7 @@ Smart device and home appliance repair booking with customer, technician, and ad
 - Customer requests with an optional ImgBB damage photo, duplicate protection, cancellation, and visual job timelines.
 - Technician status pipeline with final pricing; role-specific statistics and charts.
 - Stripe test Checkout after completion, signed webhooks, transactional fulfillment, unique payments, customer history, and admin revenue.
-- Editable profiles, Sonner notifications, confirmation dialogs, responsive navigation, loading/error/404 views, and card hover feedback.
+- Persistent light/dark mode, editable profiles, Sonner notifications, confirmation dialogs, responsive navigation, loading/error/404 views, and card hover feedback.
 
 ## Demo accounts
 
@@ -55,11 +55,10 @@ Server: `npm test` (32 tests), `npm run check`, and `npm run demo:check`. The de
 
 ## Packages
 
-Client: Next.js App Router, React, React DOM, TypeScript, BetterAuth, Lucide React, Sonner, DaisyUI, Tailwind CSS/PostCSS, Fontsource DM Sans/Manrope, Radix Slot, class-variance-authority, and Node/React type definitions. The shared controls use DaisyUI with a custom theme and Radix Slot for link composition; see [UI component notes](docs/UI_COMPONENTS.md).
+Client: Next.js App Router, React, React DOM, TypeScript, BetterAuth, Lucide React, Sonner, next-themes, DaisyUI, Tailwind CSS/PostCSS, Fontsource DM Sans/Manrope, Radix Slot, class-variance-authority, and Node/React type definitions. The shared controls use DaisyUI with a custom theme and Radix Slot for link composition; see [UI component notes](docs/UI_COMPONENTS.md).
 
 Server: Node.js, Express, MongoDB driver, BetterAuth and its MongoDB adapter, jose, Stripe, dotenv, cors, and helmet.
 
 ## Public contact
 
 Email: atikhasan.inbox@gmail.com. Phone: +8801303783098. Footer social icons open platform homepages as requested by the owner. Dhaka is displayed as the service area, not a verified personal street address.
-
