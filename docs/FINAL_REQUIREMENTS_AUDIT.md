@@ -2,9 +2,9 @@
 
 Audited 20 November 2026 against `D:/Assignment 9-Category_006.docx`; extracted reference: [assignment-requirements.txt](assignment-requirements.txt). The document is a specification, not permission to publish credentials or deploy. This report covers the current working tree in both independent repositories, including uncommitted fixes.
 
-**Verdict: substantial local functionality is complete, but the assignment is not yet fully submission-ready.** Production deployment and production verification remain pending. All eight required desktop dashboard list surfaces now use semantic tables with their existing cards and actions available in expandable details or on smaller screens. Demo passwords must be supplied through the intended submission channel. No mark/percentage is promised.
+**Verdict: required application flows and desktop tables are implemented, deployed, and verified.** Live client and API links are recorded in DEPLOYMENT.md; submission documentation and verification limits are listed below. All eight required desktop dashboard list surfaces now use semantic tables with their existing cards and actions available in expandable details or on smaller screens. Dedicated demo passwords are included in README with explicit owner approval. No mark/percentage is promised.
 
-Status meanings: **Pass** = implemented with source inspection and the evidence stated below; **Partial** = a concrete difference remains; **Pending** = not completed/verified; **Optional** = explicitly optional and not selected; **Review** = subjective assessment requiring a human. A local Pass does not certify the same behavior on an undeployed production site.
+Status meanings: **Pass** = implemented with source inspection and the evidence stated below; **Partial** = a concrete difference remains; **Pending** = not completed/verified; **Optional** = explicitly optional and not selected; **Review** = subjective assessment requiring a human. Local and production evidence are distinguished below; LIVE_QA.md records the hosted checks.
 
 ## Verification evidence
 
@@ -27,16 +27,16 @@ Dark-mode follow-up: added a sun/moon pill switch before Home in desktop public 
 | --- | --- | --- | --- |
 | S01 | 20 meaningful client / 12 server commits | Pass | Counts 22/19; descriptive feature milestones in separate Git repositories. No audit changes committed automatically. |
 | S02 | README name, purpose, features, packages | Pass | Root README rewritten to remove obsolete milestone claims; includes setup and repository links. |
-| S03 | README live URL and admin credentials | Partial | Demo email is documented; password remains in ignored server `.env.demo`. Actual live URL does not yet exist. |
+| S03 | README live URL and admin credentials | Pass | Public README now contains verified live URLs and the dedicated demo credentials, explicitly approved by the owner. |
 | S04 | Frontend `.env.local`, server `.env`, secrets excluded from Git | Pass | Ignored actual env files, example templates, browser-safe public settings; private Atlas/auth/JWT/ImgBB/Stripe config on server. |
 | S05 | Next App Router; TypeScript/JavaScript; accepted UI library | Pass | Next 16.4.6, TS client, DaisyUI 5/Tailwind 4 with custom theme; real shared controls, not merely a claimed shadcn scaffold. See UI_COMPONENTS.md. |
 | S06 | Node/Express/MongoDB; BetterAuth adapter/JWT; Stripe/ImgBB | Pass | Server package.json and implemented modules; real local integration checks. |
-| D01 | Working live client/API, no CORS/404/504 failures | Pending | Vercel/Render imports prepared; no completed deployment. See DEPLOYMENT.md. |
-| D02 | Every live route reloads successfully | Pending | Production build succeeds; live deep-link checks require deployed origins. |
-| D03 | Logged-in private-route reload retains session | Pending | Session-aware loading/guards exist; production cookie/proxy behavior must be verified after deployment. |
-| D04 | Production domain in auth trusted origins and CORS | Pending | Config supports exact origins; actual Vercel origin not yet assigned/verified. |
-| D05 | Deployed Stripe test webhook and its signing secret | Pending | Local signed webhook works; hosted endpoint/signing secret still needed. Do not reuse local listener secret. |
-| D06 | Submission links and live demo accounts | Partial | Both repository URLs and local accounts available; live URL and live account verification pending. |
+| D01 | Working live client/API, no CORS/404/504 failures | Pass | Vercel client and Render API deployed; frontend/API readiness and database connectivity verified. |
+| D02 | Every live route reloads successfully | Pass | Required public/details/auth/payment route HTTP checks passed; browser reloads verified on representative private routes for each role. |
+| D03 | Logged-in private-route reload retains session | Pass | Customer, technician and admin signed in through the frontend proxy and retained their sessions after private-route reload. |
+| D04 | Production domain in auth trusted origins and CORS | Pass | Exact primary frontend origin configured in auth/CORS; production CORS and token exchange verified. |
+| D05 | Deployed Stripe test webhook and its signing secret | Pass | Enabled deployed Stripe sandbox endpoint with its own signing secret; approved signed replay HTTP200 and provider resend accepted. |
+| D06 | Submission links and live demo accounts | Pass | Live links, both GitHub repositories and live-tested demo credentials supplied in README/private handoff. |
 
 ## Data design and business rules
 
@@ -138,7 +138,7 @@ Desktop tables are now complete. Each has column headers and record rows; disclo
 | F04 | Success amount/reference and return-to-bookings | Pass | VerifyPayment renders receipt and history/bookings links, Sonner payment feedback. |
 | F05 | Cancel message and link to retry through bookings; no mutation | Pass | Cancel route explains incomplete attempt and links to bookings; no write request. |
 | F06 | No duplicate payments across webhook/verify/retries | Pass | Unique booking/session/intent indexes, transactional fulfillment, concurrent callback/rollback tests, real repeated verification. |
-| F07 | Signed raw-body webhook (fourth challenge described in payment section) | Pass | Signature tests and actual local delivery200. Production endpoint is pending D05. |
+| F07 | Signed raw-body webhook (fourth challenge described in payment section) | Pass | Signature tests, local delivery and deployed signed replay returned200; provider resend and duplicate protection verified. |
 | X01 | Public/dashboard loading states | Pass | loading.tsx and component skeleton/loading feedback. |
 | X02 | Tool-themed404/Home button and clear error boundaries | Pass | Wrench illustration added; root/dashboard/service error routes use installed Next retry API. |
 | X03 | Sonner or react-hot-toast notifications | Pass | Replaced custom toast implementation with Sonner through shared useToast; auth, CRUD, status, payments and failures use it. Inline validation remains inline. |
@@ -167,11 +167,8 @@ Desktop tables are now complete. Each has column headers and record rows; disclo
 | O04 | Ratings/reviews | Optional | Not selected. |
 | O05 | PDF invoice + dark mode | Partial | Dark mode added across public pages/dashboards with a persistent sun/moon switch. PDF invoices are not implemented, so this combined optional requirement is not counted as a third fully completed item. |
 
-## Remaining work before claiming full compliance
+## Final handoff and limits
 
-1. Deploy the pushed client/API on Vercel/Render, finish exact production origins, configure deployed Stripe test webhook, and run the production checks in DEPLOYMENT.md.
-2. Desktop tables are complete and locally verified; commit/push their final client changes before deployment.
-3. Supply an actual public address if wanted; current footer labels Dhaka only as service area. Provide the demo password and actual live URLs in the intended examiner submission, and decide whether to include the dedicated demo password in the public README as literally requested by the assignment.
-4. Commit/push the reviewed changes in both repositories (owner-controlled workflow), then repeat production verification against the deployed commits. Do not claim local changes are already hosted.
+Application deployment, production origins, Stripe signing configuration and live workflow checks are complete. The final handoff includes documentation and a production startup-timeout adjustment; confirm the hosting dashboard deploys the intended pushed revision. Public demo credentials were explicitly approved. Footer location confirmation is tracked under L07. No automated claim is made about subjective design grading or originality against inaccessible student submissions.
 
-Operational limit: the app accepts positive cent amounts, while Stripe may impose a larger minimum charge for a currency. Normal seeded USD prices exceed the minimum; extremely small final amounts can be rejected by Checkout with an error rather than create a payment.
+The app accepts positive cent amounts; Stripe imposes its own minimum charges. Normal seeded USD prices exceed that minimum. Free Render hosting can wake slowly; see DEPLOYMENT.md. Google login and unselected optional enhancements do not block the required application flows.

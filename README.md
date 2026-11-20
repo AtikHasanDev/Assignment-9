@@ -5,11 +5,12 @@ Smart device and home appliance repair booking with customer, technician, and ad
 ## Links and submission status
 
 - Local preview: http://localhost:3000
-- Live site: pending Vercel deployment; no production URL has been verified.
+- Live site: [FixMate](https://fixmate-atikhasan.vercel.app)
+- Live API: [Render API readiness](https://fixmate-api-atikhasan.onrender.com/api/ready)
 - Client repository: https://github.com/AtikHasanDev/Assignment-9
 - Server repository: https://github.com/AtikHasanDev/Assignemnt-9-server
 - Hosting plan: Vercel client and Render API. See [deployment handoff](docs/DEPLOYMENT.md).
-- See the [final requirements audit](docs/FINAL_REQUIREMENTS_AUDIT.md) for verified behavior and remaining submission gaps.
+- See the [final requirements audit](docs/FINAL_REQUIREMENTS_AUDIT.md) for verified behavior and verification limits.
 
 ## Features
 
@@ -23,14 +24,16 @@ Smart device and home appliance repair booking with customer, technician, and ad
 
 ## Demo accounts
 
-| Role | Email |
-| --- | --- |
-| Administrator | admin.demo@fixmate.example |
-| Customer | customer.demo@fixmate.example |
-| Technician | nadia.demo@fixmate.example |
-| Technician | rafi.demo@fixmate.example |
+| Role | Email | Password |
+| --- | --- | --- |
+| Administrator | `admin.demo@fixmate.example` | `DemoAd397a4bf4d030a3b3e3ca5997a4c` |
+| Customer | `customer.demo@fixmate.example` | `DemoAd397a4bf4d030a3b3e3ca5997a4c` |
+| Technician | `nadia.demo@fixmate.example` | `DemoAd397a4bf4d030a3b3e3ca5997a4c` |
+| Technician | `rafi.demo@fixmate.example` | `DemoAd397a4bf4d030a3b3e3ca5997a4c` |
 
-The generated shared demo password is in the server's ignored `.env.demo` file as `SEED_PASSWORD`. Supply it through the intended examiner submission channel. This README does not yet satisfy the assignment's literal requirement to include an admin password. Accounts have been verified locally; live sign-in verification is pending deployment. Google sign-in is optional in the assignment and is not configured.
+These dedicated demo credentials are intentionally shared for assignment/examiner testing with the owner's approval. Payments use Stripe test mode. All three roles were verified on the live site, including private-page reloads. Google sign-in is optional in the assignment and is not configured.
+
+The private handoff file `.env.submission` also contains the live links and these demo accounts; it is ignored by Git.
 
 ## Run locally
 
