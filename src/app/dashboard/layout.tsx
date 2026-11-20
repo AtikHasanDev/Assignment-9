@@ -34,7 +34,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     return () => { document.body.style.overflow = previous; };
   }, [menuOpen]);
   useEffect(() => { if (menuOpen) sidebar.current?.querySelector<HTMLAnchorElement>('a')?.focus(); }, [menuOpen]);
-  const allowed = !!data && (pathname === dashboardPath(data.user.role) || pathname.startsWith(dashboardPath(data.user.role) + '/') || pathname === '/dashboard/profile');
+  const allowed = !!data && (pathname === dashboardPath(data.user.role) || pathname.startsWith(dashboardPath(data.user.role) + '/') || pathname === '/dashboard/profile' || (data.user.role === 'customer' && (pathname === '/payment/success' || pathname === '/payment/cancel')));
   useEffect(() => {
     if (isPending || error) return;
     if (!data) router.replace('/sign-in?returnTo=' + encodeURIComponent(pathname));

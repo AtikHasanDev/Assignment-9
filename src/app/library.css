@@ -1,0 +1,42 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@plugin "daisyui" {
+  themes: light;
+  prefix: "d-";
+  include: button, input, badge, card, table;
+  logs: false;
+}
+@plugin "daisyui/theme" {
+  name: "fixmate";
+  default: true;
+  color-scheme: light;
+  --color-base-100: #ffffff;
+  --color-base-200: #f4f6f3;
+  --color-base-300: #e0e6df;
+  --color-base-content: #183c30;
+  --color-primary: #176b49;
+  --color-primary-content: #ffffff;
+  --color-secondary: #e5efdd;
+  --color-secondary-content: #183c30;
+  --color-accent: #f3b696;
+  --color-accent-content: #423025;
+  --color-neutral: #183c30;
+  --color-neutral-content: #ffffff;
+  --color-info: #2563eb;
+  --color-info-content: #ffffff;
+  --color-success: #15803d;
+  --color-success-content: #ffffff;
+  --color-warning: #eab308;
+  --color-warning-content: #422006;
+  --color-error: #b42332;
+  --color-error-content: #ffffff;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.75rem;
+  --radius-box: 1.25rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}

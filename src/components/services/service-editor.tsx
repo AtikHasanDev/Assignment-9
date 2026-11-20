@@ -5,12 +5,14 @@ import { categories } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
 import { ImageUpload } from '@/components/ui/image-upload';
 import { useToast } from '@/components/ui/toast-provider';
+import { useSession } from '@/components/auth/session-provider';
 import '@/app/profile.css';
 import '@/app/service-editor.css';
 
 export type ServiceFields = { title: string; description: string; category: string; basePrice: number; estimatedDuration: string; serviceMode: string; serviceArea: string; image: string };
 
 export function ServiceEditor({ initial, serviceId, onSaved, onCancel }: { initial?: ServiceFields; serviceId?: string; onSaved?: () => void; onCancel?: () => void }) {
+  const { data } = useSession();
   const form = useRef<HTMLFormElement>(null);
   const [image, setImage] = useState(initial?.image || '');
   const [uploading, setUploading] = useState(false);
@@ -54,6 +56,7 @@ export function ServiceEditor({ initial, serviceId, onSaved, onCancel }: { initi
       <ImageUpload label="Service image" value={image} onChange={setImage} onBusyChange={setUploading} disabled={busy} successMessage="Service image uploaded. Complete the details and submit for approval." />
       <fieldset disabled={busy || uploading} className="profile-form-grid">
         <legend className="sr-only">Service details</legend>
+        <label htmlFor="service-technician">Technician name<input id="service-technician" value={data?.user.name || ''} readOnly /></label><label htmlFor="service-technician-email">Technician email<input id="service-technician-email" value={data?.user.email || ''} readOnly type="email" /></label>
         <label className="profile-wide" htmlFor="service-title">Service title<input id="service-title" name="title" defaultValue={initial?.title} required minLength={5} maxLength={120} placeholder="e.g. Laptop keyboard repair" /></label>
         <label htmlFor="service-category">Category<select id="service-category" name="category" required defaultValue={initial?.category || ''}><option value="" disabled>Choose a category</option>{categories.map(category => <option key={category}>{category}</option>)}</select></label>
         <label htmlFor="service-price">Starting price (USD)<input id="service-price" name="basePrice" defaultValue={initial?.basePrice} type="number" required min="0.01" max="100000" step="0.01" placeholder="25.00" /></label>

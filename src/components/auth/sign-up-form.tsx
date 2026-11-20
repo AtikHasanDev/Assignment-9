@@ -12,11 +12,11 @@ import { authClient } from '@/lib/auth-client';
 
 type Errors = Partial<Record<'name' | 'email' | 'password', string>>;
 
-export function SignUpForm() {
+export function SignUpForm({ initialRole = 'customer' }: { initialRole?: 'customer' | 'technician' }) {
   const router = useRouter();
   const notify = useToast();
   const { data: session, isPending, error: sessionError } = useSession();
-  const [role, setRole] = useState<'customer' | 'technician'>('customer');
+  const [role, setRole] = useState<'customer' | 'technician'>(initialRole);
   const [errors, setErrors] = useState<Errors>({});
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
@@ -53,7 +53,7 @@ export function SignUpForm() {
   if (created || session) return <div className="auth-card auth-success" role="status"><CheckCircle2 size={40} aria-hidden="true" /><h2>{created ? 'Your account is ready' : 'You’re already signed in'}</h2><p>{created ? 'Welcome to FixMate. Your account has been created successfully.' : 'You can explore our repair services with your existing account.'}</p><Link className="button" href="/services">Explore services</Link></div>;
 
   return <form className="auth-card" onSubmit={submit} noValidate aria-busy={busy}>
-    <h2>Create your account</h2><p className="auth-muted">Choose how you want to use FixMate.</p>
+    <h2>{role === 'technician' ? 'Join as a technician' : 'Create your account'}</h2><p className="auth-muted">{role === 'technician' ? 'Bring your repair skills to FixMate. Your listings go live after admin approval.' : 'Choose how you want to use FixMate.'}</p>
     <fieldset className="role-choices" disabled={busy}><legend>I’m here to</legend>
       <label className={role === 'customer' ? 'role-choice selected' : 'role-choice'}><input type="radio" name="role" value="customer" checked={role === 'customer'} onChange={() => setRole('customer')} /><UserRound size={23} aria-hidden="true" /><strong>Find a repair</strong><span>Customer</span></label>
       <label className={role === 'technician' ? 'role-choice selected' : 'role-choice'}><input type="radio" name="role" value="technician" checked={role === 'technician'} onChange={() => setRole('technician')} /><Wrench size={23} aria-hidden="true" /><strong>Offer my skills</strong><span>Technician</span></label>

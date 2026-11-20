@@ -1,60 +1,48 @@
 # FixMate
 
-A device and home appliance repair platform where customers find services, track repair jobs, and pay after completion.
+Smart device and home appliance repair booking with customer, technician, and administrator dashboards. Customers request a repair, follow its progress, and pay only after completion.
 
-## Current progress
+## Links and submission status
 
-Requested enhancement: customer repair requests now support one optional damage photo uploaded through ImgBB, with preview/removal and no photo required for submission. The image is stored on the booking and displayed in customer details, the owning technician's queue, and the administrator monitor. Existing bookings without images still work. Service cards now lift and gently zoom their image on pointer hover, with reduced-motion support. Production build/TypeScript, 32 server tests, real requests with/without photos, technician photo visibility, and a real browser ImgBB upload/removal check pass.
+- Local preview: http://localhost:3000
+- Live site: pending Vercel deployment; no production URL has been verified.
+- Client repository: https://github.com/AtikHasanDev/Assignment-9
+- Server repository: https://github.com/AtikHasanDev/Assignemnt-9-server
+- Hosting plan: Vercel client and Render API. See [deployment handoff](docs/DEPLOYMENT.md).
+- See the [final requirements audit](docs/FINAL_REQUIREMENTS_AUDIT.md) for verified behavior and remaining submission gaps.
 
-Part 20 verifies a complete Stripe sandbox browser payment, real webhook delivery, customer/admin payment history, and repeat-verification idempotency. It improves mobile navigation focus/scroll handling, account-menu dismissal, payment text wrapping, and pagination wording. Optional API_PROXY_URL rewrites support Vercel-to-Render same-origin API calls, and robots.txt excludes dashboard/auth paths. Production build/TypeScript, 31 server tests, and local production-proxy checks pass. See docs/QA_REPORT.md and docs/DEPLOYMENT.md. Hosting import forms are prepared; production deployment is not yet complete.
+## Features
 
-Part 19 seeds four demo accounts, twelve approved services with uploaded device illustrations, and six connected unpaid bookings across job states. See docs/DEMO_ACCOUNTS.md; the generated login password is in the ignored server .env.demo file. Real API workflow checks passed across all roles, including approval/visibility, duplicate protection, cancellation, ownership, repair transitions, and unpaid Stripe checkout; disposable check records were cleaned up. The seeded directory was inspected in the browser. Root/dashboard error boundaries, a custom not-found page, root loading state, and service-error retry support use the installed Next.js API. Full browser payment completion and deployment remain.
+- BetterAuth email/password sessions, customer/technician registration, custom JWT authorization, live role checks, and ownership enforcement.
+- Approved, available services with MongoDB search, category/mode filters, sorting, URL persistence, and pagination.
+- Technician service CRUD, ImgBB image uploads, availability controls, and administrator moderation.
+- Customer requests with an optional ImgBB damage photo, duplicate protection, cancellation, and visual job timelines.
+- Technician status pipeline with final pricing; role-specific statistics and charts.
+- Stripe test Checkout after completion, signed webhooks, transactional fulfillment, unique payments, customer history, and admin revenue.
+- Editable profiles, Sonner notifications, confirmation dialogs, responsive navigation, loading/error/404 views, and card hover feedback.
 
-Part 18 adds customer payment history at /dashboard/customer/payments and administrator transactions at /dashboard/admin/transactions. Confirmed payments show service, transaction/booking references, amount, technician, and Dhaka timestamp; the admin view also shows the customer. Both lists have server pagination, refresh, loading/error/empty states, and enabled sidebar links. Customer reads are scoped exclusively to the authenticated email. A shared pagination hook now serves all admin lists and payment history. Production build/TypeScript and all 31 server tests pass; authenticated history browser interactions remain to be verified.
+## Demo accounts
 
-Part 17 adds Stripe test checkout for completed unpaid customer bookings, guarded checkout redirects, payment return verification, and a cancellation page. The server verifies ownership, uses the stored final amount, reuses open sessions, and shares transactional idempotent fulfillment between signed webhooks and return verification. Setup instructions are in docs/STRIPE_LOCAL_SETUP.md. Build/TypeScript and all 30 server tests pass; concurrent fulfillment was also verified against real MongoDB using a simulated Stripe session, with disposable records cleaned up. Actual Stripe checkout/browser testing awaits account keys and a local webhook listener.
+| Role | Email |
+| --- | --- |
+| Administrator | admin.demo@fixmate.example |
+| Customer | customer.demo@fixmate.example |
+| Technician | nadia.demo@fixmate.example |
+| Technician | rafi.demo@fixmate.example |
 
-Part 16 adds the read-only administrator booking monitor at /dashboard/admin/bookings, with combined job/payment status filters, server pagination, customer and technician details, pricing, request details, and the job timeline. Terminal timeline text now identifies the customer rather than assuming the viewer cancelled the request. Production build/TypeScript and all 26 server tests pass. Authenticated administrator browser interactions remain to be verified.
-
-Part 15 adds administrator user management and service moderation at /dashboard/admin/users and /dashboard/admin/services. User roles and service approval decisions have confirmation dialogs. Lists use server pagination; moderation defaults to pending services with all/approved/rejected filters. Account self-role changes are disabled and remain rejected by the API. Both sidebar entries are enabled. Production build/TypeScript and all 25 server tests pass. These pages require an administrator account; authenticated browser interaction still needs verification.
-
-Part 14 adds /dashboard/technician/my-services with owned-service cards, approval/availability labels, editing, pause/resume, deletion confirmation, and refresh/error/empty states. Creation and editing share one validated form; edits reset approval through the existing API. My services is enabled in the sidebar. The authenticated browser workflow still needs manual verification.
-
-Local preview: http://localhost:3000 (client), http://localhost:5000/api/ready (API readiness). Run npm run dev from the client directory and npm start from Assignemnt-9-server in separate terminals if the preview is stopped. Use localhost for both apps so authentication cookies and allowed origins match. Sign in as a technician to use Add a service and My services.
-
-Part 13 adds /dashboard/technician/add-service with image upload, required service fields, USD price validation, submission progress/error feedback, and pending-approval confirmation. The technician sidebar now enables Add a service. A real ImgBB test upload succeeded after local key configuration. Production build/TypeScript and 25 server tests pass; the full authenticated browser flow remains to be verified. My services and editing controls follow in the next part.
-
-Part 12 adds editable name, phone, service area, bio, and profile photo at /dashboard/profile. Email and role are read-only. Saving refetches the shared session to refresh account navigation. Photo uploads validate PNG/JPEG/WebP files up to 5 MB and 25 megapixels and show progress/error feedback; removal takes effect on Save profile. The server reads IMGBB_API_KEY from its ignored .env. Live provider upload is verified; authenticated browser verification remains pending.
-
-Parts 1–3 establish the Next.js public layout and shared UI, plus a BetterAuth client, reactive session provider, and JSON API helper. The service directory remains a pre-launch placeholder. Registration/sign-in pages, live listings, and dashboards follow in later milestones. The remaining plan is in docs/IMPLEMENTATION_PLAN.md.
+The generated shared demo password is in the server's ignored `.env.demo` file as `SEED_PASSWORD`. Supply it through the intended examiner submission channel. This README does not yet satisfy the assignment's literal requirement to include an admin password. Accounts have been verified locally; live sign-in verification is pending deployment. Google sign-in is optional in the assignment and is not configured.
 
 ## Run locally
 
-Part 11 enables the technician request queue at /dashboard/technician/requests. It shows customer contact/address, preferred date, problem description, service, status, and price, with server-backed status filtering and refresh. Requested jobs expose Accept/Reject; rejection requires confirmation. Accepted jobs expose Start work; in-progress jobs expose a completion dialog with a validated final USD amount. Terminal jobs have no mutation controls. Status changes show toasts, refresh the queue, and handle stale-state conflicts. Profile editing is the next client milestone; its protected server API is now available.
-
-Part 10 adds a separate full-width dashboard shell with role-specific navigation, a sticky user top bar, mobile sidebar controls, active-page styling, and Home/Profile links. Customer, technician, and admin overview pages fetch their role-protected summaries and show reusable statistics cards and accessible status bar charts. Empty accounts show real zero values; API failures have retry controls. Profile details are currently read-only. Navigation entries for screens still under construction are disabled until their implementation milestones.
-
-Part 9 adds a confirmation dialog for cancelling requested jobs, cancellation feedback, and expandable booking timelines. Timeline dates use Asia/Dhaka; rejected and cancelled jobs display terminal notices. Payment remains a future milestone, so the Paid timeline stage is displayed only when the server reports paymentStatus=paid. Technician request-management screens will use the new server status APIs in a later part.
-
-Part 8 adds /services/[id] with service information, technician summary, starting price, request controls, and route-specific unavailable/error pages. Logged-out users are sent to sign-in with a return-to link; only customers can submit the form. The form validates phone, address, preferred date, and problem description. Successful requests link to a scoped read-only My Bookings page. Cancellation, status actions, payment controls, and timeline rendering follow in later parts.
-
-Part 7 replaces the directory placeholder with server-rendered service browsing. A GET form keeps search, category, serviceMode, sort, and page in the URL; pagination preserves filters and resets to page one when the search form is submitted. Cards, result counts, no-match states, and API failure states use actual server responses. Category links from the home page open preselected filters. Service details follow in the next milestone.
-
-Part 6 adds a request-time featured-service section that fetches the six newest approved, available services. It includes reusable service cards, loading skeletons, honest empty/error states, category links, and the four-step repair flow. No sample records are substituted when the API is unavailable. API_URL can override the API origin for server-side fetches; otherwise NEXT_PUBLIC_API_URL is used. Full service browsing and details are scheduled next.
-
-Part 5 adds sign-in, sign-out, safe same-origin return-to navigation, shared toast notifications, a session-aware account dropdown, and a protected dashboard entry point. Login and registration send users to their role's dashboard. Dashboard statistics, sidebar navigation, profile editing, and business workflows remain scheduled. The sign-in form is at /sign-in; private redirects use the returnTo query parameter. Access tokens stay in memory and are exchanged from the HttpOnly BetterAuth cookie.
-
-Part 4 adds /sign-up with customer/technician selection, accessible validation, password visibility, submission progress, and session-aware success feedback. The client API helper now exchanges the HttpOnly BetterAuth session for a short-lived JWT before private API calls. Sign-in pages, dashboard redirection, and app-wide toast notifications will be completed in subsequent milestones; the current success screen links to Services.
-
-Requires Node.js 22 or newer.
+Requires Node.js 22 or newer. The server is an independent Git repository in `Assignemnt-9-server` (directory spelling is intentional), ignored by the client repository.
 
 ```powershell
-npm install
+npm ci
 Copy-Item .env.example .env.local
 npm run dev
 ```
 
-Open http://localhost:3000. Run the independent server from Assignemnt-9-server in a separate terminal. That directory is intentionally ignored by this client repository.
+In the server directory, install dependencies, copy `.env.example` to `.env`, enter your private configuration, and run `npm run dev`. Local client and API ports are 3000 and 5000. Configure Atlas, BetterAuth, JWT, ImgBB, and Stripe test secrets only in ignored environment files. Never put private credentials in `NEXT_PUBLIC_*` variables. Follow the server README for seed and Stripe listener commands.
 
 ## Validation
 
@@ -63,20 +51,15 @@ npm run typecheck
 npm run build
 ```
 
+Server: `npm test` (32 tests), `npm run check`, and `npm run demo:check`. The demo workflow command uses configured local/Atlas/Stripe test services, creates disposable records and an unpaid test Checkout session, then cleans them up. It does not submit a payment. A separate browser sandbox payment and signed webhook were verified during development.
+
 ## Packages
 
-Next.js, React, React DOM, Lucide React, TypeScript, and Node/React type definitions. Additional packages will be documented as their features are implemented.
+Client: Next.js App Router, React, React DOM, TypeScript, BetterAuth, Lucide React, Sonner, DaisyUI, Tailwind CSS/PostCSS, Fontsource DM Sans/Manrope, Radix Slot, class-variance-authority, and Node/React type definitions. The shared controls use DaisyUI with a custom theme and Radix Slot for link composition; see [UI component notes](docs/UI_COMPONENTS.md).
 
-## Configuration
+Server: Node.js, Express, MongoDB driver, BetterAuth and its MongoDB adapter, jose, Stripe, dotenv, cors, and helmet.
 
-Copy .env.example to .env.local. NEXT_PUBLIC_API_URL points to the Express server; NEXT_PUBLIC_SITE_URL identifies this client. NEXT_PUBLIC variables are browser-visible: never put private secrets in them. Actual environment files are ignored by Git.
+## Public contact
 
-## Submission status
-
-- Live URL: not deployed yet.
-- Admin credentials: not created yet.
-- Technician/customer test credentials: not created yet.
-- Repository remotes: not configured yet.
-
-Production links and dedicated test-account details will be added after deployment and verification. Stripe must remain in test mode.
+Email: atikhasan.inbox@gmail.com. Phone: +8801303783098. Footer social icons open platform homepages as requested by the owner. Dhaka is displayed as the service area, not a verified personal street address.
 

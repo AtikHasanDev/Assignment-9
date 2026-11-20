@@ -7,6 +7,6 @@ const labels = {
 export type Status = keyof typeof labels;
 
 export function StatusBadge({ status }: { status: Status }) {
-  return <span className={'status-badge status-badge--' + status}>{labels[status]}</span>;
+  return <span className={'d-badge status-badge status-badge--' + status}>{labels[status]}</span>;
 }
 
