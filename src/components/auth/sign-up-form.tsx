@@ -16,12 +16,15 @@ export function SignUpForm({ initialRole = 'customer' }: { initialRole?: 'custom
   const router = useRouter();
   const notify = useToast();
   const { data: session, isPending, error: sessionError } = useSession();
+  const [sessionChecked, setSessionChecked] = useState(!isPending);
   const [role, setRole] = useState<'customer' | 'technician'>(initialRole);
   const [errors, setErrors] = useState<Errors>({});
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [created, setCreated] = useState(false);
+  // Preserve the mounted form while BetterAuth rechecks a guest on app focus.
+  useEffect(() => { if (!isPending) setSessionChecked(true); }, [isPending]);
   useEffect(() => { if (session) router.replace(dashboardPath(session.user.role)); }, [session, router]);
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
@@ -49,7 +52,7 @@ export function SignUpForm({ initialRole = 'customer' }: { initialRole?: 'custom
     finally { setBusy(false); }
   }
 
-  if (isPending) return <div className="auth-card" role="status">Checking your session…</div>;
+  if (isPending && !sessionChecked) return <div className="auth-card" role="status">Checking your session…</div>;
   if (created || session) return <div className="auth-card auth-success" role="status"><CheckCircle2 size={40} aria-hidden="true" /><h2>{created ? 'Your account is ready' : 'You’re already signed in'}</h2><p>{created ? 'Welcome to FixMate. Your account has been created successfully.' : 'You can explore our repair services with your existing account.'}</p><Link className="button" href="/services">Explore services</Link></div>;
 
   return <form className="auth-card" onSubmit={submit} noValidate aria-busy={busy}>
