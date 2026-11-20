@@ -1,7 +1,0 @@
-# UI components
-
-DaisyUI 5 is installed through Tailwind CSS 4 and its official PostCSS plugin. A custom `fixmate` theme and the `d-` prefix keep library components separate from legacy CSS. The shared Button uses DaisyUI button variants; status badges and home search/popular-repair chips use DaisyUI components. Radix Slot preserves accessible link-button composition, with class-variance-authority selecting variants.
-
-Notifications use Sonner through the existing useToast interface. Existing forms, cards, layouts, and native confirmation dialogs retain custom styling with refreshed typography and colors. DaisyUI is one of the assignment's explicitly accepted libraries. Global Tailwind preflight is omitted to preserve existing form semantics/styles. Reference: https://daisyui.com/docs/install/nextjs/ and https://daisyui.com/docs/config/.
-
-Theme selection uses next-themes with a `fixmate-theme` local-storage preference and initial system color-scheme detection. Its early script maps light/dark onto the existing `data-theme` values to avoid an initial light flash; the root suppresses only the expected attribute hydration difference. The header pill switch sits before Home on desktop and remains next to the mobile menu; dashboards have the same switch in their top bar. Theme-specific CSS covers existing custom surfaces/inputs/status colors, DaisyUI variables and Sonner. Motion respects reduced-motion preferences.

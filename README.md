@@ -64,4 +64,4 @@ Server: Node.js, Express, MongoDB driver, BetterAuth and its MongoDB adapter, jo
 
 ## Public contact
 
-Email: atikhasan.inbox@gmail.com. Phone: +8801303783098. Footer social icons open platform homepages as requested by the owner. Dhaka is displayed as the service area, not a verified personal street address.
+Email: atikhasan.inbox@gmail.com. Phone: +8801303783098.  Dhaka, Bangladesh.
