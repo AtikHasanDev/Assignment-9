@@ -5,7 +5,7 @@ export function dashboardLinks(role: DashboardRole): DashboardLink[] {
   const overview: DashboardLink = { href: base, label: 'Overview', icon: 'overview', ready: true };
   if (role === 'customer') return [overview,
     { href: base + '/bookings', label: 'My bookings', icon: 'bookings', ready: true },
-    { href: base + '/payments', label: 'Payment history', icon: 'payments', ready: false },
+    { href: base + '/payments', label: 'Payment history', icon: 'payments', ready: true },
   ];
   if (role === 'technician') return [overview,
     { href: base + '/add-service', label: 'Add a service', icon: 'add', ready: true },
@@ -16,6 +16,6 @@ export function dashboardLinks(role: DashboardRole): DashboardLink[] {
     { href: base + '/users', label: 'Manage users', icon: 'users', ready: true },
     { href: base + '/services', label: 'Service approval', icon: 'services', ready: true },
     { href: base + '/bookings', label: 'All bookings', icon: 'bookings', ready: true },
-    { href: base + '/transactions', label: 'Transactions', icon: 'payments', ready: false },
+    { href: base + '/transactions', label: 'Transactions', icon: 'payments', ready: true },
   ];
 }
