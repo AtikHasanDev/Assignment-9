@@ -4,6 +4,8 @@ The app accepts Stripe test payments only. Never paste secret keys into chat or 
 
 ## Current local setup
 
+Browser QA follow-up: a $40 USD sandbox payment was completed successfully. The return page, both history views, a real HTTP 200 webhook delivery, and one-record/one-timeline-event behavior after repeated verification were confirmed. New sessions disable adaptive conversion for consistent USD checkout. No real money moved.
+
 The existing sandbox test secret and the local listener signing secret are configured in the server's ignored .env. The official Stripe CLI is installed under the ignored node_modules/.cache/stripe-cli folder. The listener was started in the background and forwards the two checkout completion events to localhost:5000. A real Stripe $1 test checkout session was created and verified as unpaid, then expired; its disposable MongoDB booking was removed. No card payment was submitted.
 
 To restart this local listener from the server directory, run `npm run stripe:listen`. It reads the existing key from .env via an environment variable, writes the listener's signing secret back to .env without printing it, and forwards webhooks. Restart the API after the listener reports ready. Avoid starting a second listener while the existing one is running. The CLI can be reinstalled locally with `npm install --prefix node_modules/.cache/stripe-cli --no-package-lock --no-save @stripe/cli`; STRIPE_CLI_PATH can point to another official Stripe executable.

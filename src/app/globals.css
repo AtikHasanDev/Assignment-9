@@ -22,3 +22,4 @@
 @media(max-width:480px){.footer-grid,.steps-grid,.service-grid{grid-template-columns:1fr}.footer-grid{gap:24px}.footer-bottom{flex-direction:column;gap:5px}.info-panel{padding:28px 22px}.page-heading h1{font-size:36px}.empty-state{padding:36px 18px}.empty-state h2{font-size:23px}}
 @media(prefers-reduced-motion:reduce){.skeleton{animation:none}}
 .route-recovery-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}.route-not-found{padding-block:80px;max-width:800px}.route-not-found p{color:var(--muted)}.route-loading{display:grid;gap:20px;max-width:600px;margin:32px 0}.route-loading .skeleton-line{height:24px}.route-loading .skeleton-line:first-child{height:50px}@media(max-width:640px){.route-not-found{padding-block:50px}}
+.payment-reference{overflow-wrap:anywhere}
