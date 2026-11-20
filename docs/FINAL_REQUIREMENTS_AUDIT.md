@@ -70,7 +70,7 @@ Server paths in this report are relative to `Assignemnt-9-server/`.
 | L04 | Mobile hamburger navigation | Pass | Responsive Header with accessible controls. |
 | L05 | Footer logo/tagline/links/categories/copyright | Pass | Shared footer. |
 | L06 | Footer email and phone | Pass | Owner-provided mailto/tel values, verified in browser. |
-| L07 | Footer address | Partial | Shows service area “Serving Dhaka, Bangladesh.” Owner did not provide a personal/public address; no street address invented. |
+| L07 | Footer address | Pass | Dhaka, Bangladesh is displayed as the public address, explicitly confirmed by the owner. |
 | L08 | Footer social links and new X logo | Pass | Owner explicitly requested generic platform homepages; Facebook, X, Instagram, LinkedIn, GitHub. New X glyph; centered controls with target blank/rel protection. |
 | L09 | Public header/footer separate from dashboard sidebar/topbar | Pass | Public route group and DashboardLayout; no public footer in dashboard. |
 | L10 | All required public/customer/technician/admin/profile routes | Pass | App route files and successful build output. Both exact payment URLs added; older dashboard payment URLs retained for compatibility. |
@@ -169,6 +169,6 @@ Desktop tables are now complete. Each has column headers and record rows; disclo
 
 ## Final handoff and limits
 
-Application deployment, production origins, Stripe signing configuration and live workflow checks are complete. The final handoff includes documentation and a production startup-timeout adjustment; confirm the hosting dashboard deploys the intended pushed revision. Public demo credentials were explicitly approved. Footer location confirmation is tracked under L07. No automated claim is made about subjective design grading or originality against inaccessible student submissions.
+Application deployment, production origins, Stripe signing configuration and live workflow checks are complete. The final handoff includes documentation and a production startup-timeout adjustment; confirm the hosting dashboard deploys the intended pushed revision. Public demo credentials were explicitly approved. The owner confirmed the public footer address as Dhaka, Bangladesh (L07). No automated claim is made about subjective design grading or originality against inaccessible student submissions.
 
 The app accepts positive cent amounts; Stripe imposes its own minimum charges. Normal seeded USD prices exceed that minimum. Free Render hosting can wake slowly; see DEPLOYMENT.md. Google login and unselected optional enhancements do not block the required application flows.
