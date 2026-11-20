@@ -2,7 +2,7 @@
 
 Audited 20 November 2026 against `D:/Assignment 9-Category_006.docx`; extracted reference: [assignment-requirements.txt](assignment-requirements.txt). The document is a specification, not permission to publish credentials or deploy. This report covers the current working tree in both independent repositories, including uncommitted fixes.
 
-**Verdict: substantial local functionality is complete, but the assignment is not yet fully submission-ready.** Production deployment and production verification remain pending. Several dashboard lists use cards on desktop where the document explicitly asks for tables. Demo passwords must be supplied through the intended submission channel. No mark/percentage is promised.
+**Verdict: substantial local functionality is complete, but the assignment is not yet fully submission-ready.** Production deployment and production verification remain pending. All eight required desktop dashboard list surfaces now use semantic tables with their existing cards and actions available in expandable details or on smaller screens. Demo passwords must be supplied through the intended submission channel. No mark/percentage is promised.
 
 Status meanings: **Pass** = implemented with source inspection and the evidence stated below; **Partial** = a concrete difference remains; **Pending** = not completed/verified; **Optional** = explicitly optional and not selected; **Review** = subjective assessment requiring a human. A local Pass does not certify the same behavior on an undeployed production site.
 
@@ -97,7 +97,7 @@ Server paths in this report are relative to `Assignemnt-9-server/`.
 
 ## Dashboards and profile
 
-The desktop-table difference is deliberate audit precision: the fields and actions exist, but cards are not claimed to be literal tables.
+Desktop tables are now complete. Each has column headers and record rows; disclosure buttons open the existing detail cards and actions. Smaller screens render cards directly. Browser checks covered all eight tables across the three roles, technician mobile cards and customer disclosure actions without mutating bookings.
 
 | ID | Criterion | Status | Evidence / remaining work |
 | --- | --- | --- | --- |
@@ -105,26 +105,26 @@ The desktop-table difference is deliberate audit precision: the fields and actio
 | U02 | Reusable overview stats and charts | Pass | Overview/StatsCard/StatusChart with scoped server summaries; real zeros and retry states. |
 | U03 | Customer counts: total requests/active/completed | Pass | Customer overview summary endpoint. |
 | U04 | Customer bookings fields, cancel/pay gates and paid badge | Pass | Bookings page, confirmations, status/timeline components. |
-| U05 | Customer bookings desktop table/mobile cards | Partial | Cards currently used at desktop widths too. |
+| U05 | Customer bookings desktop table/mobile cards | Pass | Semantic desktop table; existing booking cards on smaller screens. |
 | U06 | Customer payment history fields incl technician name | Pass | Payment history now renders technician name plus email, amount/transaction/date/service; scoped server API. |
-| U07 | Customer payment history table | Partial | Card list currently, not a literal table. |
+| U07 | Customer payment history table | Pass | Shared payment-history table with existing receipt cards on smaller screens. |
 | U08 | Technician counts: services/approved/pending requests | Pass | Technician overview summary endpoint. |
 | U09 | Validated add-service fields + ImgBB file input | Pass | ServiceEditor/ImageUpload; positive price and required image; no URL-only image field. |
 | U10 | Readonly technician name/email, pending+available, approval toast | Pass | Identity fields added in audit fixes; server derives trusted owner, defaults and notifications. |
 | U11 | Technician service CRUD, prefilling, approval reset, availability | Pass | My Services/editor with confirmation; server ownership and real moderation/edit checks. |
-| U12 | My Services table | Partial | Responsive service cards used on desktop. |
+| U12 | My Services table | Pass | Services table with image/title/category/price/approval/availability and management details. |
 | U13 | Technician queue fields and status filter | Pass | Requests page shows customer contact/address/date/problem/service/status; includes optional photo. |
 | U14 | Only valid buttons; completion amount prefill/modal; terminal no action | Pass | Requests UI and server workflow gate; confirmations for reject. |
-| U15 | Technician requests table | Partial | Desktop queue is cards. |
+| U15 | Technician requests table | Pass | Requests table with contact/address/date/problem/status and existing job actions. |
 | U16 | Admin counts: users/technicians/pending services | Pass | Protected admin overview summary endpoint. |
 | U17 | User photo/name/email/role/joined date; role edits; no self-role change | Pass | Avatar/joined date added; protected admin role endpoint and tests. |
-| U18 | Manage Users table | Partial | User identity rows/cards, not a semantic table. |
+| U18 | Manage Users table | Pass | Users table with avatar/name/email/role/joined date and expandable role controls. |
 | U19 | Admin service approve/reject/filter with pending easy to find | Pass | Pending default filter; server admin moderation tests and real approval check. |
-| U20 | Admin service approval table | Partial | Cards currently. |
+| U20 | Admin service approval table | Pass | Approval table with owner information, filters and moderation details. |
 | U21 | Admin readonly all-booking fields and status filter | Pass | AdminBookingsPage; no job mutation controls; protected API. |
-| U22 | Admin bookings table | Partial | Expandable cards currently. |
+| U22 | Admin bookings table | Pass | Read-only booking table with filters and full request/timeline details. |
 | U23 | All transactions and total revenue above list | Pass | Names/emails/service/amount/reference/date; totalRevenue aggregates all matching records rather than current page. Tests cover multi-page totals. |
-| U24 | Admin transaction table | Partial | Cards currently. |
+| U24 | Admin transaction table | Pass | Transactions table with required fields; aggregate revenue remains above it. |
 | U25 | Every role edits name/phone/area/bio/photo; readonly email/role | Pass | Shared profile page, ImgBB upload and protected profile tests for all roles. |
 | U26 | Name/photo update navbar/topbar without logout | Pass | Save awaits shared session refetch; both surfaces consume same session provider. Source verified; complete browser photo-save journey not rerun during this audit. |
 
@@ -170,7 +170,7 @@ The desktop-table difference is deliberate audit precision: the fields and actio
 ## Remaining work before claiming full compliance
 
 1. Deploy the pushed client/API on Vercel/Render, finish exact production origins, configure deployed Stripe test webhook, and run the production checks in DEPLOYMENT.md.
-2. Convert the eight desktop dashboard list surfaces identified above to actual tables while retaining mobile cards/details/actions.
+2. Desktop tables are complete and locally verified; commit/push their final client changes before deployment.
 3. Supply an actual public address if wanted; current footer labels Dhaka only as service area. Provide the demo password and actual live URLs in the intended examiner submission, and decide whether to include the dedicated demo password in the public README as literally requested by the assignment.
 4. Commit/push the reviewed changes in both repositories (owner-controlled workflow), then repeat production verification against the deployed commits. Do not claim local changes are already hosted.
 
